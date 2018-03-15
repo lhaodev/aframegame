@@ -16,45 +16,29 @@
     
     <a-sky color="#f3f3f3"></a-sky>
     
-    <a-entity id="character" position="-1.4 3.5 4.45">
-      <a-camera rotation="-13 85 0" look-controls="pointerLockEnabled:true">
-        <a-cursor
-          teleporter="character: #character; marker: #teleportMarker"
-          raycaster="objects: [telesurface];" 
-        ></a-cursor>
-      </a-camera>
-    </a-entity>
-
-    <a-entity 
-      id="teleportMarker" visible="false"
-      geometry="primitive: cylinder; radius:0.2; height:0.1; openEnded:true;"
-      material="color: #99ff99; shader: flat; side:double;"
-      position="0 0.05 0"
-    ></a-entity>
-
     <!-- -->
     <a-entity id="cameraRig">
-      <a-camera id="mycam" rotation="-13 85 0" position="0 1.6 0" look-controls="pointerLockEnabled:true" >
-        <a-cursor id="mycursor"
-        ></a-cursor>
+      <a-camera 
+        id="mycam" 
+        rotation="-13 85 0" 
+        position="0 1.6 0"
+        look-controls="pointerLockEnabled:true" 
+      >
+        <a-cursor id="mycursor"></a-cursor>
       </a-camera>
       <a-entity
         position=".2 -.1 0"
         touch-listener
         teleport-controls=
-                  "cameraRig: #cameraRig;
-                   teleportOrigin: #mycam;
-                   startEvents:touchstart,mousedown;
-                   endEvents:touchend,mouseup;"
+        "cameraRig: #cameraRig;
+         teleportOrigin: #mycam;
+         startEvents:touchstart,mousedown;
+         endEvents:touchend,mouseup;"
         >
       </a-entity>
     </a-entity>
     
-    <a-plane rotation="-90 0 0" width="50" height="50" color="#333" 
-             segments-height="10"
-             segments-width="10" shadow
-    ></a-plane>
-
+    <a-plane rotation="-90 0 0" width="50" height="50" color="#333" segments-height="10" segments-width="10" shadow ></a-plane>
   </a-scene>  
 
   <script type="text/javascript">
@@ -80,9 +64,6 @@ AFRAME.registerComponent('touch-listener', {
     
   }
 });
-    
-
-
   </script>
 
 </body>
