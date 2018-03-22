@@ -5,66 +5,63 @@
   <title>Teleport for gaze and mouse on touch and desktop</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
-  <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
-
+  <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>  
+  <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+  <script src="tap-to-teleport.js" type="text/javascript"></script>  
+  
 </head>
 <body>
   <a-scene>
     <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
     <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
     <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
-    
-    <a-sky color="#f3f3f3"></a-sky>
-    
-    <!-- -->
-    <a-entity id="cameraRig">
-      <a-camera 
-        id="mycam" 
-        rotation="-13 85 0" 
-        position="0 1.6 0"
-        look-controls="pointerLockEnabled:true" 
-      >
-        <a-cursor id="mycursor"></a-cursor>
-      </a-camera>
-      <a-entity
-        position=".2 -.1 0"
-        touch-listener
-        teleport-controls=
-        "cameraRig: #cameraRig;
-         teleportOrigin: #mycam;
-         startEvents:touchstart,mousedown;
-         endEvents:touchend,mouseup;"
-        >
+        
+    <a-entity id="cameraRig" position="0 1.6 0" >
+      <a-entity id="head" position="0 0 0" camera="userHeight:1.6" look-controls="pointerLockEnabled:true">
+        <a-entity position="0.1 -0.1 0"
+          touch-listener
+          teleport-controls=
+            "cameraRig: #cameraRig;
+             teleportOrigin: #head;
+             startEvents:starttouch;
+             endEvents:endtouch;
+             curveShootingSpeed:15;
+             hitCylinderRadius:1;
+             collisionEntities: [ground]"
+          >
+        </a-entity>
       </a-entity>
-    </a-entity>
+    </a-entity>    
     
-    <a-plane rotation="-90 0 0" width="50" height="50" color="#333" segments-height="10" segments-width="10" shadow ></a-plane>
+    <a-entity ground
+      environment="preset:tron"
+      shadow
+    ></a-entity>
+
+    <a-entity ground
+      geometry="primitive:box; width:10; depth:10; height:0.01;"
+      material="color:#333"
+      position="-5 0 -5"        
+    >
+    </a-entity>    
+    
+    <a-entity ground
+      geometry="primitive:box; width:3; depth:3; height:2;"
+      material="color:#666"
+      position="-6 1 -6"        
+    >
+    </a-entity>    
+
+    <a-entity ground
+      geometry="primitive:box; width:3; depth:3; height:3;"
+      material="color:#999"
+      position="-3 1.5 -8"        
+    >
+    </a-entity>        
+  
   </a-scene>  
 
-  <script type="text/javascript">
-AFRAME.registerComponent('touch-listener', {
-  init: function () {
-    var targetEl = this.el;
-    
-    //Create the touchstart event
-    document.querySelector('a-scene').addEventListener('touchstart', function () {
-      targetEl.emit('starttouch')
-    })
-    document.querySelector('a-scene').addEventListener('mousedown', function () {
-      targetEl.emit('starttouch')
-    })
-    
-    //Create the touchend event
-     document.querySelector('a-scene').addEventListener('touchend', function () {
-        targetEl.emit('clickend')
-    })
-     document.querySelector('a-scene').addEventListener('mouseup', function () {
-        targetEl.emit('clickend')
-    })
-    
-  }
-});
-  </script>
+
 
 </body>
 </html>
