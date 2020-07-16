@@ -101,17 +101,10 @@
     </a-entity>
     <a-sphere position="16 -0.5 10" radius="0.5" color="#FFFF55" shadow></a-sphere>
   
+
+    <!-- z direction -->
     <a-cylinder 
-      position=" 0 0 0" 
-      rotation="0 90 0"
-      radius="0.1" 
-      height="4" 
-      color="#FF0000" 
-      shadow>
-    </a-cylinder>
-    
-    <a-cylinder 
-      position=" 0 0 0" 
+      position=" 0 0 2" 
       rotation="90 0 0"
       radius="0.1" 
       height="4" 
@@ -119,8 +112,10 @@
       shadow>
     </a-cylinder>
     
+    
+    <!-- x direction -->
     <a-cylinder 
-      position=" 0 0 0" 
+      position="2 0 0" 
       rotation="0 0 90"
       radius="0.1" 
       height="4" 
@@ -128,9 +123,9 @@
       shadow>
     </a-cylinder>
     
+    <!-- y direction -->
     <a-cylinder 
-      position="0 0 4" 
-      rotation="0 0 0"
+      position="0 2 0" 
       radius="0.1" 
       height="4" 
       color="#FFFFFF" 
@@ -138,14 +133,14 @@
      
   
     <a-entity ground
-      geometry="primitive:box; width:1; depth:2; height:3;"
+      geometry="primitive:box; width:0.5; depth:0.5; height:0.5;"
       material="color:#FFFF00"
       position="0 0 0"        
     >
     </a-entity> 
     
     <a-entity ground
-      geometry="primitive:box; width:1; depth:2; height:3;"
+      geometry="primitive:box; width:0.5; depth:0.5; height:0.5;"
       material="color:#00FFFF"
       position="0 3 0"        
     >
