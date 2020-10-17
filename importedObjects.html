@@ -3,11 +3,15 @@
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
   </head>
   <body>
-    <a-assets>
-      <a-asset-item id="suzy" src="https://cdn.hyperdev.com/paste-me.svg?v=1477325869954"></a-asset-item>
-    </a-assets>
+
     <a-scene>
-      <a-entity gltf-model="#suzy"></a-entity>
+      <a-assets>
+        <a-asset-item id="suzy" src="https://cdn.hyperdev.com/paste-me.svg?v=1477325869954"></a-asset-item>
+        <a-asset-item id="suzy-obj" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsuzaane.obj?v=1602963567447"></a-asset-item>
+    <a-asset-item id="suzy-mtl" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsuzaane.mtl?v=1602963567402"></a-asset-item>
+      </a-assets>
+      
+      <a-entity obj-model="#suzy"></a-entity>
       <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
       <a-sky color="#ECECEC"></a-sky>
     </a-scene>
