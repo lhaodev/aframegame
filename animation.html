@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  </head>
+  <body>
+    <!--  
+        This shows how to import an obj file into your model 
+      -->
+    <a-scene>
+      
+      <a-assets>
+        <a-asset-item id="waverglb" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fwaving.glb?v=1603486249580"></a-asset-item>
+        <a-asset-item id="waverfbx" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fwaving.fbx?v=1603486454283"></a-asset-item>
+
+      </a-assets>
+      
+      <a-entity camera look-controls wasd-controls="acceleration:100; fly:true" position="0 1.6 0"></a-entity>
+
+      <a-entity fbx-model="src: #waverfbx;" position  ="0 1 -4"></a-entity>
+
+      
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#00FF00"></a-plane>
+      <a-sky color="#FFCCAA"></a-sky>
+    </a-scene>
+  </body>
+</html>
