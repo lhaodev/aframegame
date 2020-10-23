@@ -11,13 +11,15 @@
       
       <a-assets>
         <a-asset-item id="waverglb" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fwaving.glb?v=1603486249580"></a-asset-item>
-        
+        <a-asset-item id="wavebowglb" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fwavebow.glb?v=1603488546949"></a-asset-item>
       </a-assets>
       
       <a-entity camera look-controls wasd-controls="acceleration:100; fly:true" position="0 1.6 0"></a-entity>
 
-      <a-entity gltf-model="#waverglb" position="-2 0 -3" 
-                animation-mixer="clip:run_wave; duration:3"></a-entity>
+      <a-entity gltf-model="#wavebowglb" position="-2 0 -3" rotation="90 0 0"
+                animation-mixer="clip: bow"
+                animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 3000; to: -2 0 -5; loop: true"
+                ></a-entity>
 
       
       <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#00FF00"></a-plane>
