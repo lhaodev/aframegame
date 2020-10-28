@@ -72,7 +72,6 @@ AFRAME.registerComponent('keymin', {
 
   onKeyDown: function (event) {
     console.log(event.code)
-    console.log(event.code=='KeyL')
     if (AFRAME.utils.shouldCaptureKeyEvent(event)) {
       if (event.code=='KeyJ'){
         console.log("KeyJ")
