@@ -10,7 +10,7 @@ Controls carla2 with different keys ...
 
 let carla1 = document.querySelector('#carla1');
 
-const KeyboardEvent = window.KeyboardEvent;
+
 console.log("in keymin.js")
 /**
  * Keyboard Controls component.
