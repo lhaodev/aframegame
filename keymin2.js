@@ -3,6 +3,8 @@
 /*
 In this demo we create a component which responds to key presses
 in the simplest way possible.
+
+Controls carla2 with different keys ...
 */
 
 
