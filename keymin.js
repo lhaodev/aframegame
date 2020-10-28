@@ -4,8 +4,7 @@
 In this demo we create a component which responds to key presses
 in the simplest way possible.
 */
-const MAX_DELTA = 0.2,
-    PROXY_FLAG = '__keyboard-controls-proxy';
+
 
 let carla1 = document.querySelector('#carla1');
 
@@ -16,20 +15,9 @@ console.log("in keymin.js")
  *
  * Stripped-down version of: https://github.com/donmccurdy/aframe-keyboard-controls
  *
- * Bind keyboard events to components, or control your entities with the WASD keys.
+ * Bind keyboard events to components, or control your animnations with keys
  *
- * Why use KeyboardEvent.code? "This is set to a string representing the key that was pressed to
- * generate the KeyboardEvent, without taking the current keyboard layout (e.g., QWERTY vs.
- * Dvorak), locale (e.g., English vs. French), or any modifier keys into account. This is useful
- * when you care about which physical key was pressed, rather thanwhich character it corresponds
- * to. For example, if you’re a writing a game, you might want a certain set of keys to move the
- * player in different directions, and that mapping should ideally be independent of keyboard
- * layout. See: https://developers.google.com/web/updates/2016/04/keyboardevent-keys-codes
- *
- * @namespace wasd-controls
- * keys the entity moves and if you release it will stop. Easing simulates friction.
- * to the entity when pressing the keys.
- * @param {bool} [enabled=true] - To completely enable or disable the controls
+ * 
  */
 AFRAME.registerComponent('keymin', {
   schema: {
@@ -39,9 +27,9 @@ AFRAME.registerComponent('keymin', {
 
   init: function () {
     carla1 = document.querySelector('#carla1');
-    console.log("in init for keymin2")
+    console.log("in init for keymin")
     console.log('carla1='+carla1)
-    this.localKeys = {};
+
     this.listeners = {
       keydown: this.onKeyDown.bind(this),
       keyup: this.onKeyUp.bind(this),
@@ -95,7 +83,7 @@ AFRAME.registerComponent('keymin', {
       }else if (event.code=='KeyK'){
         console.log("KeyK")
         carla1.pause()
-        carla1.setAttribute("animation-mixer",{"clip":"bow"})
+        carla1.setAttribute("animation-mixer",{"clip":"bowing"})
         carla1.setAttribute("animation__rotate",
           { "property": "rotation",
             "easing": "easeInOutQuad",
