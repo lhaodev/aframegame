@@ -77,7 +77,7 @@
 				shadowCameraHelper = new THREE.CameraHelper( spotLight.shadow.camera );
 				scene.add( shadowCameraHelper );
 
-				//
+				// Create the floor
 
 				let material = new THREE.MeshPhongMaterial( { color: 0x808080, dithering: true } );
 
@@ -90,7 +90,7 @@
         floor = mesh
 				scene.add( mesh );
 
-				//
+				// Create bluish cylindeer
 
 				material = new THREE.MeshPhongMaterial( { color: 0x4080ff, dithering: true } );
 
@@ -108,6 +108,13 @@
         mesh.position.set( 10, 5, 0 );
         cone = mesh;
         scene.add( mesh );
+        
+        geometry = new THREE.BoxGeometry(10,10,1)
+        material = new THREE.MeshPhongMaterial( {color: 0xff0000})
+        mesh = new THREE.Mesh(geometry, material)
+        mesh.position.set(0,10,0)
+        mesh.rotation.x = Math.PI/2
+        scene.add(mesh)
         
         const loader = new GLTFLoader();
         
@@ -229,6 +236,7 @@
 
         requestAnimationFrame(loop)
         if (carla) {carla.rotation.y += 0.05}
+        if (cylinder) {cylinder.rotation.x += 0.05}
 
         render()
       }    
