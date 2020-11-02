@@ -24,7 +24,7 @@
 
 			let renderer, scene, camera;
       
-      let carla, cone, cylinder;
+      let carla, cone, cylinder, floor;
 
 			let spotLight, lightHelper, shadowCameraHelper;
 
@@ -87,6 +87,7 @@
 				mesh.position.set( 0, - 1, 0 );
 				mesh.rotation.x = - Math.PI * 0.5;
 				mesh.receiveShadow = true;
+        floor = mesh
 				scene.add( mesh );
 
 				//
