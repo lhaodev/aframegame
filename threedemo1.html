@@ -105,13 +105,16 @@
         scene.add( mesh );
         
         const loader = new GLTFLoader();
+        const carla = new THREE.Group()
 
         loader.load( 'https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fwavebow-lesson17.gltf?v=1603716845062', 
           function ( gltf ) {
             console.dir(gltf)
-            console.dir(gltf.scale)
-
-          	scene.add( gltf.scene );
+            console.dir(gltf.scene.scale)
+            carla.add(gltf.scene)
+            carla.scale.set(10) //= new THREE.Vector3(10.0,10.0,10.0)
+           
+          	scene.add( carla );
 
           }, 
           undefined, 
@@ -213,12 +216,19 @@
 				gui.open();
 
 			}
+      
+      function loop() {
+
+        requestAnimationFrame(loop)
+
+        renderer.render(scene, camera)
+      }    
 
 			init();
 
 			buildGui();
 
-			render();
+			loop(); //render();
 
 		</script>
 
