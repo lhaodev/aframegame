@@ -118,7 +118,7 @@
             gltf.scene.scale.set(10,10,10) //new THREE.Vector3(10.0,10.0,10.0))
             //console.log("set scale to 10")
             carla = gltf.scene;
-            carla.position.set()
+            carla.position.set(-5,5,5)
           	scene.add( gltf.scene );
 
           }, 
@@ -227,7 +227,7 @@
       function loop() {
 
         requestAnimationFrame(loop)
-        carla.rotation.y += 0.01
+        if (carla) {carla.rotation.y += 0.05}
 
         render()
       }    
