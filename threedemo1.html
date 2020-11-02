@@ -24,11 +24,14 @@
 
 			let renderer, scene, camera;
       
-      let carla, cone, cylinder, floor;
+      let carla, cone, cylinder, floor, box;
 
 			let spotLight, lightHelper, shadowCameraHelper;
 
 			let gui;
+      
+      let boxHeight = 10
+      let counter = 0
 
 			function init() {
 
@@ -114,6 +117,7 @@
         mesh = new THREE.Mesh(geometry, material)
         mesh.position.set(0,10,0)
         mesh.rotation.x = Math.PI/2
+        box = mesh
         scene.add(mesh)
         
         const loader = new GLTFLoader();
@@ -237,6 +241,10 @@
         requestAnimationFrame(loop)
         if (carla) {carla.rotation.y += 0.05}
         if (cylinder) {cylinder.rotation.x += 0.05}
+        counter = counter + 1
+        box.position.y = 10 + 5*Math.sin(counter/60*Math.PI)
+        //console.log(box.position.y)
+        
 
         render()
       }    
