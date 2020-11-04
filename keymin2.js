@@ -3,7 +3,7 @@
 /*
 In this demo we create a component which responds to key presses
 in the simplest way possible.
-
+Carla1 and Carla2 are controlled with different keys
 Controls carla2 with different keys ...
 */
 
@@ -80,18 +80,18 @@ AFRAME.registerComponent('keymin2', {
         carla.pause()
         carla.setAttribute("animation-mixer",{"clip":"waving"})
         carla.play()
-      }if (event.code=='KeyT'){
-        console.log("KeyT")
+      }if (event.code=='KeyY'){
+        console.log("KeyY")
         carla.pause()
         carla.removeAttribute("animation__rotate")
         carla.play()
-      }else if (event.code=='KeyY'){
-        console.log("KeyY")
+      }else if (event.code=='KeyT'){
+        console.log("KeyT")
         carla.pause()
         carla.setAttribute("animation-mixer",{"clip":"bowing"})
         carla.play()
-      }else if (event.code=='KeyF'){
-        console.log("KeyF")
+      }else if (event.code=='KeyV'){
+        console.log("KeyV")
         carla.pause()
         carla.setAttribute("animation__rotate",
           { "property": "rotation",
