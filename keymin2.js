@@ -8,10 +8,10 @@ Controls carla2 with different keys ...
 */
 
 
-let carla1 = document.querySelector('#carla1');
+let carla = document.querySelector('#carla2');
 
 
-console.log("in keymin.js")
+console.log("in keymin2.js")
 /**
  * Keyboard Controls component.
  *
@@ -21,16 +21,16 @@ console.log("in keymin.js")
  *
  * 
  */
-AFRAME.registerComponent('keymin', {
+AFRAME.registerComponent('keymin2', {
   schema: {
     enabled:           { default: true },
     debug:             { default: false }
   },
 
   init: function () {
-    carla1 = document.querySelector('#carla1');
-    console.log("in init for keymin")
-    console.log('carla1='+carla1)
+    carla = document.querySelector('#carla2');
+    console.log("in init for keymin2")
+    console.log('carla='+carla)
 
     this.listeners = {
       keydown: this.onKeyDown.bind(this),
@@ -75,25 +75,25 @@ AFRAME.registerComponent('keymin', {
   onKeyDown: function (event) {
     console.log(event.code)
     if (AFRAME.utils.shouldCaptureKeyEvent(event)) {
-      if (event.code=='KeyJ'){
-        console.log("KeyJ")
-        carla1.pause()
-        carla1.setAttribute("animation-mixer",{"clip":"waving"})
-        carla1.play()
-      }if (event.code=='KeyU'){
-        console.log("KeyJ")
-        carla1.pause()
-        carla1.removeAttribute("animation__rotate")
-        carla1.play()
-      }else if (event.code=='KeyK'){
-        console.log("KeyK")
-        carla1.pause()
-        carla1.setAttribute("animation-mixer",{"clip":"bowing"})
-        carla1.play()
-      }else if (event.code=='KeyP'){
-        console.log("KeyK")
-        carla1.pause()
-        carla1.setAttribute("animation__rotate",
+      if (event.code=='KeyR'){
+        console.log("KeyR")
+        carla.pause()
+        carla.setAttribute("animation-mixer",{"clip":"waving"})
+        carla.play()
+      }if (event.code=='KeyT'){
+        console.log("KeyT")
+        carla.pause()
+        carla.removeAttribute("animation__rotate")
+        carla.play()
+      }else if (event.code=='KeyY'){
+        console.log("KeyY")
+        carla.pause()
+        carla.setAttribute("animation-mixer",{"clip":"bowing"})
+        carla.play()
+      }else if (event.code=='KeyF'){
+        console.log("KeyF")
+        carla.pause()
+        carla.setAttribute("animation__rotate",
           { "property": "rotation",
             "easing": "easeInOutQuad",
             "dir": "alternate",
@@ -102,11 +102,11 @@ AFRAME.registerComponent('keymin', {
             "loop": true
           }
         )
-        carla1.play()
-      }else if (event.code=='KeyL'){
-        console.log("KeyL")
-        carla1.pause()
-        carla1.setAttribute("animation__rotate",
+        carla.play()
+      }else if (event.code=='KeyG'){
+        console.log("KeyG")
+        carla.pause()
+        carla.setAttribute("animation__rotate",
           { "property": "rotation",
             "easing": "easeInOutQuad",
             "dir": "alternate",
@@ -115,18 +115,18 @@ AFRAME.registerComponent('keymin', {
             "loop": true
           }
         )
-        carla1.play()
-      } else if (event.code=='KeyM'){
-        console.log("KeyM")
-        carla1.pause()
-        carla1.removeAttribute("animation__rotate")
-        carla1.play()
+        carla.play()
+      } else if (event.code=='KeyH'){
+        console.log("KeyH")
+        carla.pause()
+        carla.removeAttribute("animation__rotate")
+        carla.play()
       }
-      else if (event.code=='KeyN'){
-        console.log("KeyM")
-        carla1.pause()
-        carla1.removeAttribute("animation-mixer")
-        carla1.play()
+      else if (event.code=='KeyB'){
+        console.log("KeyB")
+        carla.pause()
+        carla.removeAttribute("animation-mixer")
+        carla.play()
       }
     }
   },
