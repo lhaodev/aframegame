@@ -39,19 +39,26 @@
               movement-controls="fly:false"
               position="0 1 1">
 
-            <a-entity camera>
+            <a-entity camera
+                      look-controls="pointerLockEnabled:true">
                 <a-entity id="hud"
                   health="10"
                   score="0"
                   text="width:3; value: Start Game!;"
                   position="0 1 -2"
                 ></a-entity>
+              
+              <a-box id="avatar"
+                static-body
+                scale="0.5 0.5 0.5" position="0 -1 -2" material="color:red">
+              </a-box>
+              
+              <a-entity gltf-model="#wavebow-l17" 
+                position="0 -1 -2" rotation="0 180 0"             
+                ></a-entity>
             </a-entity>
 
-            <a-box id="avatar"
-                static-body
-                scale="2 2 2" position="0 0 0" material="color:red">
-            </a-box>
+            
       </a-box>
     </a-scene>
   </body>
