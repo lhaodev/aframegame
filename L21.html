@@ -5,6 +5,29 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
 
+    <script id="coinsTemplate" type="text/x-nunjucks-template">
+      {% for x in range(0, 2) %}
+        {% for z in range(0, 2) %}
+          <a-cylinder mixin="coin" score="10" rotation={{r}}
+                    position="{{ x * 10 - 10 }} 10 {{ z * 10 - 10}}">
+          </a-cylinder>
+        {% endfor %}
+      {% endfor %}
+    </script>
+    
+    <script id="boxTemplate" type="text/x-nunjucks-template">
+      {% for x in range(0, 2) %}
+        {% for z in range(0, 2) %}
+          <a-box 
+              color="#4CC3D9" 
+              position="{{ x * 10 - 10 }} 10 {{ z * 10 - 10}}"
+              dynamic-body>
+          </a-box>
+
+        {% endfor %}
+      {% endfor %}
+    </script>
+    
   </head>
   <body>
     <a-scene physics="friction:0.0; restitution:0.2; debug:false"
@@ -23,6 +46,12 @@
         <img id="sky0"
              src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsky0.jpeg?v=1603277733523">
         <a-mixin id="woodencube" geometry="primitive: box" material="src:#cherry-light" scale="0.1 1 0.1"></a-mixin>
+        <a-mixin id="coin"
+                    rotation="90 0 0"
+                    scale="0.4 0.1 0.4"
+                    dynamic-body
+                    material="color:goldenrod">
+                </a-mixin>
       </a-assets>
       
       
@@ -33,6 +62,12 @@
                static-body></a-plane>
       <a-sky src="#sky0"></a-sky>
       
+      
+      // COINS
+      <a-entity template="src: #coinsTemplate" data-r="0 45 0" ></a-entity>
+      
+      // Boxes
+      <a-entity template="src: #boxTemplate"></a-entity>
       
       // AVATAR with Camera and movement controls
       <a-box  id="avbox"
@@ -50,7 +85,7 @@
               
               <a-box id="avatar"
                 static-body
-                scale="0.5 0.5 0.5" position="0 -1 -2" material="color:red">
+                scale="0.5 0.1 0.5" position="0 -1.1 -2" material="color:red">
               </a-box>
               
               <a-entity gltf-model="#wavebow-l17" 
