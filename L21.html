@@ -4,7 +4,7 @@
     <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
-
+    <script src="/follow.js"></script>
     <script id="coinsTemplate" type="text/x-nunjucks-template">
       {% for x in range(0, 10) %}
         {% for z in range(0, 10) %}
@@ -16,12 +16,13 @@
     </script>
     
     <script id="boxTemplate" type="text/x-nunjucks-template">
-      {% for x in range(0, 2) %}
-        {% for z in range(0, 2) %}
+      {% for x in range(0, 10) %}
+        {% for z in range(0, 10) %}
           <a-box 
               color="#4CC3D9" 
-              position="{{ x * 10 - 10 }} 10 {{ z * 10 - 10}}"
-              dynamic-body>
+              position="{{ x * 10 - 50 }} 10 {{ z * 10 - 50}}"
+              follow="target:#avbox; speed:1"
+              dynamic-body="angular-damping:0.5">
           </a-box>
 
         {% endfor %}
@@ -84,7 +85,8 @@
               
               <a-box id="avatar"
                 static-body
-                scale="0.5 0.1 0.5" position="0 -1.1 -2" material="color:red">
+                scale="0.5 4 0.5" position="0 -1 -2" 
+                material="color:red; transparent:true; opacity:0.3">
               </a-box>
               
               <a-entity gltf-model="#wavebow-l17" 
