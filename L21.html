@@ -6,8 +6,8 @@
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
     
     <script id="coinsTemplate" type="text/x-nunjucks-template">
-      {% for x in range(0, 10) %}
-        {% for z in range(0, 10) %}
+      {% for x in range(0, 11) %}
+        {% for z in range(0, 11) %}
           <a-cylinder mixin="coin" dynamic-body score="10" scale={{s}}
                     position="{{ x * 10 - 50 }} 10 {{ z * 10 - 50}}">
           </a-cylinder>
@@ -16,8 +16,8 @@
     </script>
     
     <script id="boxTemplate" type="text/x-nunjucks-template">
-      {% for x in range(0, 10) %}
-        {% for z in range(0, 10) %}
+      {% for x in range(0, 11) %}
+        {% for z in range(0, 11) %}
           <a-box 
               color="#4CC3D9" 
               position="{{ x * 10 - 50 }} 10 {{ z * 10 - 50}}"
@@ -53,6 +53,7 @@
                  geometry="primitive: box" 
                  material="src:#cherry-light" 
                  scale="10 10 0.1"></a-mixin>
+        
         <a-mixin id="coin"
                     rotation="90 0 0"
                     material="color:goldenrod">
@@ -61,7 +62,7 @@
       
 
       <a-plane position="0 0 -4" rotation="-90 0 0" width="40" height="40" 
-               material="src:#cherry-light; repeat: 50 50"
+               material="src:#cherry-light; repeat: 40 40"
                static-body></a-plane>
       
       <a-sky src="#sky0"></a-sky>
@@ -106,6 +107,7 @@
               <a-entity gltf-model="#wavebow-l17" 
                 position="0 -1 -2" rotation="0 180 0"             
                 ></a-entity>
+                
             </a-entity>
 
             
