@@ -63,13 +63,15 @@
       <a-sky src="#sky0"></a-sky>
       
       
-      // COINS
+      <!--  COINS -->
       <a-entity template="src: #coinsTemplate" data-s="0.4 0.1 0.4" ></a-entity>
       
-      // Boxes
+      <!--  Boxes -->
       <a-entity template="src: #boxTemplate"></a-entity>
       
-      // AVATAR with Camera and movement controls
+      <a-entity mixin="woodencube" position="3 3 -3"></a-entity>
+      
+      <!--  AVATAR with Camera and movement controls -->
       <a-box  id="avbox"
               movement-controls="fly:false"
               position="0 1 1">
