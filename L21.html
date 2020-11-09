@@ -6,10 +6,10 @@
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
 
     <script id="coinsTemplate" type="text/x-nunjucks-template">
-      {% for x in range(0, 2) %}
-        {% for z in range(0, 2) %}
-          <a-cylinder mixin="coin" score="10" rotation={{r}}
-                    position="{{ x * 10 - 10 }} 10 {{ z * 10 - 10}}">
+      {% for x in range(0, 10) %}
+        {% for z in range(0, 10) %}
+          <a-cylinder mixin="coin" dynamic-body score="10" rotation={{r}}
+                    position="{{ x * 10 - 50 }} 10 {{ z * 10 - 50}}">
           </a-cylinder>
         {% endfor %}
       {% endfor %}
@@ -49,7 +49,6 @@
         <a-mixin id="coin"
                     rotation="90 0 0"
                     scale="0.4 0.1 0.4"
-                    dynamic-body
                     material="color:goldenrod">
                 </a-mixin>
       </a-assets>
