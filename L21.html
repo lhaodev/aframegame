@@ -4,7 +4,7 @@
     <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
-    <script src="/follow.js"></script>
+    
     <script id="coinsTemplate" type="text/x-nunjucks-template">
       {% for x in range(0, 10) %}
         {% for z in range(0, 10) %}
@@ -30,7 +30,8 @@
     
   </head>
   <body>
-    <a-scene physics="friction:0.0; restitution:0.2; debug:false"
+    
+    <a-scene physics="friction:0.1; restitution:0.2; debug:false"
              renderer="antialias:true">
       
       <a-assets>
@@ -54,24 +55,19 @@
                 </a-mixin>
       </a-assets>
       
-      <a-entity obj-model="obj: #suzy-obj; mtl: #suzy-mtl"
-                dynamic-body="angularDamping:0.99; shape:cylinder"
-                follow="target:#avbox; speed:1"
-                position="0 2 -4"></a-entity>
-      
-      <a-box position="-1 4 -3" rotation="0 45 0" color="#4CC3D9" dynamic-body></a-box>
-      <a-box position="1 4 -3" rotation="45 0 0" color="#FF0000" dynamic-body></a-box>
+
       <a-plane position="0 0 -4" rotation="-90 0 0" width="40" height="40" 
                material="src:#cherry-light; repeat: 20 20"
                static-body></a-plane>
+      
       <a-sky src="#sky0"></a-sky>
       
       
       // COINS
-      //<a-entity template="src: #coinsTemplate" data-s="0.4 0.1 0.4" ></a-entity>
+      <a-entity template="src: #coinsTemplate" data-s="0.4 0.1 0.4" ></a-entity>
       
       // Boxes
-      //<a-entity template="src: #boxTemplate"></a-entity>
+      <a-entity template="src: #boxTemplate"></a-entity>
       
       // AVATAR with Camera and movement controls
       <a-box  id="avbox"
