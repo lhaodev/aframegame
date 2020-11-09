@@ -31,7 +31,7 @@
   </head>
   <body>
     
-    <a-scene physics="friction:0.1; restitution:0.2; debug:false"
+    <a-scene physics="friction:0.2; restitution:0.2; debug:false"
              renderer="antialias:true">
       
       <a-assets>
@@ -48,6 +48,7 @@
              src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fcherry_light.jpg?v=1603277741102">
         <img id="sky0"
              src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsky0.jpeg?v=1603277733523">
+        
         <a-mixin id="woodencube" 
                  geometry="primitive: box" 
                  material="src:#cherry-light" 
@@ -60,7 +61,7 @@
       
 
       <a-plane position="0 0 -4" rotation="-90 0 0" width="40" height="40" 
-               material="src:#cherry-light; repeat: 20 20"
+               material="src:#cherry-light; repeat: 50 50"
                static-body></a-plane>
       
       <a-sky src="#sky0"></a-sky>
@@ -72,21 +73,29 @@
       <!--  Boxes -->
       <a-entity template="src: #boxTemplate"></a-entity>
       
+      
       <a-entity mixin="woodencube" position="3 3 -3"></a-entity>
+      
+      <a-entity mixin="woodencube" position="3 3 -20"></a-entity>
+      
+      <a-entity mixin="woodencube" position="-10 3 -3" rotation="0 90 0"></a-entity>
+      
+      
       
       <!--  AVATAR with Camera and movement controls -->
       <a-box  id="avbox"
               movement-controls="fly:false"
               position="0 1 1">
 
-            <a-entity camera
+              <a-entity camera
                       look-controls="pointerLockEnabled:true">
-                <a-entity id="hud"
+              
+              <a-entity id="hud"
                   health="10"
                   score="0"
                   text="width:3; value: Start Game!;"
                   position="0 1 -2"
-                ></a-entity>
+              ></a-entity>
               
               <a-box id="avatar"
                 static-body
