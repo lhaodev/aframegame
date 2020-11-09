@@ -8,7 +8,7 @@
     <script id="coinsTemplate" type="text/x-nunjucks-template">
       {% for x in range(0, 10) %}
         {% for z in range(0, 10) %}
-          <a-cylinder mixin="coin" dynamic-body score="10" rotation={{r}}
+          <a-cylinder mixin="coin" dynamic-body score="10" scale={{s}}
                     position="{{ x * 10 - 50 }} 10 {{ z * 10 - 50}}">
           </a-cylinder>
         {% endfor %}
@@ -21,8 +21,7 @@
           <a-box 
               color="#4CC3D9" 
               position="{{ x * 10 - 50 }} 10 {{ z * 10 - 50}}"
-              follow="target:#avbox; speed:1"
-              dynamic-body="angular-damping:0.5">
+              dynamic-body="angular-damping:0.99">
           </a-box>
 
         {% endfor %}
@@ -41,6 +40,8 @@
         <a-asset-item 
              id="wavebow-l17" 
              src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fwavebow-lesson17.gltf?v=1603716845062"></a-asset-item>
+        <a-asset-item id="suzy-obj" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsuzaane.obj?v=1602963567447"></a-asset-item>
+        <a-asset-item id="suzy-mtl" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsuzaane.mtl?v=1602963567402"></a-asset-item>
 
         <img id="cherry-light"
              src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fcherry_light.jpg?v=1603277741102">
@@ -49,11 +50,14 @@
         <a-mixin id="woodencube" geometry="primitive: box" material="src:#cherry-light" scale="0.1 1 0.1"></a-mixin>
         <a-mixin id="coin"
                     rotation="90 0 0"
-                    scale="0.4 0.1 0.4"
                     material="color:goldenrod">
                 </a-mixin>
       </a-assets>
       
+      <a-entity obj-model="obj: #suzy-obj; mtl: #suzy-mtl"
+                dynamic-body="angularDamping:0.99; shape:cylinder"
+                follow="target:#avbox; speed:1"
+                position="0 2 -4"></a-entity>
       
       <a-box position="-1 4 -3" rotation="0 45 0" color="#4CC3D9" dynamic-body></a-box>
       <a-box position="1 4 -3" rotation="45 0 0" color="#FF0000" dynamic-body></a-box>
@@ -64,10 +68,10 @@
       
       
       // COINS
-      <a-entity template="src: #coinsTemplate" data-r="0 45 0" ></a-entity>
+      //<a-entity template="src: #coinsTemplate" data-s="0.4 0.1 0.4" ></a-entity>
       
       // Boxes
-      <a-entity template="src: #boxTemplate"></a-entity>
+      //<a-entity template="src: #boxTemplate"></a-entity>
       
       // AVATAR with Camera and movement controls
       <a-box  id="avbox"
