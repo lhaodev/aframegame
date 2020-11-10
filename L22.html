@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
+    
+    <script id="coinsTemplate" type="text/x-nunjucks-template">
+      {% for x in range(0, 11) %}
+        {% for z in range(0, 11) %}
+          <a-cylinder mixin="coin" dynamic-body score="10" scale={{s}}
+                    position="{{ x * 10 - 50 }} 10 {{ z * 10 - 50}}">
+          </a-cylinder>
+        {% endfor %}
+      {% endfor %}
+    </script>
+    
+    <script id="boxTemplate" type="text/x-nunjucks-template">
+      {% for x in range(0, 11) %}
+        {% for z in range(0, 11) %}
+          <a-box 
+              color="#4CC3D9" 
+              position="{{ x * 10 - 50 }} 10 {{ z * 10 - 50}}"
+              dynamic-body="angular-damping:0.99">
+          </a-box>
+
+        {% endfor %}
+      {% endfor %}
+    </script>
+    
+  </head>
+  <body>
+    
+    <a-scene physics="friction:0.2; restitution:0.2; debug:false"
+             renderer="antialias:true">
+      
+      <a-assets>
+        <a-asset-item 
+             id="wavebow3a" 
+             src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fwavebow3a.gltf?v=1603659461253"></a-asset-item>
+        <a-asset-item 
+             id="wavebow-l17" 
+             src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fwavebow-lesson17.gltf?v=1603716845062"></a-asset-item>
+        <a-asset-item id="suzy-obj" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsuzaane.obj?v=1602963567447"></a-asset-item>
+        <a-asset-item id="suzy-mtl" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsuzaane.mtl?v=1602963567402"></a-asset-item>
+
+        <img id="cherry-light"
+             src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fcherry_light.jpg?v=1603277741102">
+        <img id="sky0"
+             src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsky0.jpeg?v=1603277733523">
+        
+        <a-mixin id="woodencube" 
+                 geometry="primitive: box" 
+                 material="src:#cherry-light" 
+                 scale="10 10 0.1"></a-mixin>
+        
+        <a-mixin id="coin"
+                    rotation="90 0 0"
+                    material="color:goldenrod">
+                </a-mixin>
+      </a-assets>
+      
+      <a-link href="index.html"
+              itle="L21" 
+              image="#sky0"></a-link>
+
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="40" height="40" 
+               material="src:#cherry-light; repeat: 40 40"
+               static-body></a-plane>
+      
+      <a-sky src="#sky0"></a-sky>
+      
+      
+      <!--  COINS -->
+      <a-entity template="src: #coinsTemplate" data-s="0.4 0.1 0.4" ></a-entity>
+      
+      <!--  Boxes -->
+      <a-entity template="src: #boxTemplate"></a-entity>
+      
+      
+      <a-entity mixin="woodencube" position="3 3 -3"></a-entity>
+      
+      <a-entity mixin="woodencube" position="3 3 -20"></a-entity>
+      
+      <a-entity mixin="woodencube" position="-10 3 -3" rotation="0 90 0"></a-entity>
+      
+      
+      
+      <!--  AVATAR with Camera and movement controls -->
+      <a-box  id="avbox"
+              movement-controls="fly:false"
+              position="0 1 1">
+
+              <a-entity camera
+                      look-controls="pointerLockEnabled:true">
+              
+              <a-entity id="hud"
+                  health="10"
+                  score="0"
+                  text="width:3; value: Start Game!;"
+                  position="0 1 -2"
+              ></a-entity>
+              
+              <a-box id="avatar"
+                static-body
+                scale="0.5 4 0.5" position="0 -1 -2" 
+                material="color:red; transparent:true; opacity:0.3">
+              </a-box>
+              
+              <a-entity gltf-model="#wavebow-l17" 
+                position="0 -1 -2" rotation="0 180 0"             
+                ></a-entity>
+                
+            </a-entity>
+
+            
+      </a-box>
+    </a-scene>
+  </body>
+</html>
