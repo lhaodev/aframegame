@@ -18,6 +18,7 @@ AFRAME.registerComponent('follow', {
     var targetPosition = this.data.target.object3D.position;
     var currentPosition = this.el.object3D.position;
 
+    window.avatar = this
 
     // Subtract the vectors to get the direction the entity should head in.
     directionVec3.copy(targetPosition).sub(currentPosition);
@@ -30,14 +31,16 @@ AFRAME.registerComponent('follow', {
     ['x', 'y', 'z'].forEach(function (axis) {
       directionVec3[axis] *= factor * (timeDelta / 1000);
     });
+    //console.log(JSON.stringify(directionVec3))
 
     // here we applhy a push toward the target
     if (this.el.body) {
-      console.log(distance)
-    this.el.body.applyImpulse(
-     new CANNON.Vec3().copy(directionVec3),
-     new CANNON.Vec3().copy(this.el.body.position)//getComputedAttribute('position'))
-    )
+      //console.log(distance)
+      this.el.object3D.position 
+    //this.el.body.applyImpulse(
+     //new CANNON.Vec3().copy(directionVec3),
+     //new CANNON.Vec3().copy(this.el.body.position)//getComputedAttribute('position'))
+    //)
    }
   }
 });
