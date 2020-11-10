@@ -4,6 +4,7 @@
     <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
+    <script src="/link-controls.js"></script>
     
     <script id="coinsTemplate" type="text/x-nunjucks-template">
       {% for x in range(0, 11) %}
@@ -61,7 +62,9 @@
       </a-assets>
       
       <a-link href="index.html"
-              itle="L21" 
+              link-controls
+              title="L21" 
+              position="0 1 -2"
               image="#sky0"></a-link>
 
       <a-plane position="0 0 -4" rotation="-90 0 0" width="40" height="40" 
@@ -89,6 +92,7 @@
       <!--  AVATAR with Camera and movement controls -->
       <a-box  id="avbox"
               movement-controls="fly:false"
+              link-controls
               position="0 1 1">
 
               <a-entity camera
