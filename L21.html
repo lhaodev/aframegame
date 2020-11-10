@@ -32,7 +32,11 @@
   <body>
     
     <a-scene physics="friction:0.2; restitution:0.2; debug:false"
-             renderer="antialias:true">
+             renderer="antialias:true"
+             raycaster="far: 100; objects: [link];" 
+             cursor="rayOrigin: mouse" 
+             camera-position
+             >
       
       <a-assets>
         <a-asset-item 
@@ -48,6 +52,8 @@
              src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fcherry_light.jpg?v=1603277741102">
         <img id="sky0"
              src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsky0.jpeg?v=1603277733523">
+        <img id="nightsky"
+             src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fnightsky.png?v=1603277760890">
         
         <a-mixin id="woodencube" 
                  geometry="primitive: box" 
@@ -59,6 +65,12 @@
                     material="color:goldenrod">
                 </a-mixin>
       </a-assets>
+      
+      <a-link href="L22.html"
+              link-controls
+              title="L22" 
+              position="0 1 -2"
+              image="#nightsky"></a-link>
       
 
       <a-plane position="0 0 -4" rotation="-90 0 0" width="40" height="40" 
