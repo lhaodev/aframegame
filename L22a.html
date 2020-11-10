@@ -5,13 +5,12 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
     <script src="/link-controls.js"></script>
-    <script src="/follow.js"></script>
   </head>
   <body>
     <!--  
         This shows how to import an obj file into your model 
       -->
-    <a-scene physics="friction:0.05; restitution:0.2"
+    <a-scene 
              renderer="antialias:true"
              raycaster="far: 100; objects: [link];" 
              cursor="rayOrigin: mouse" 
@@ -33,19 +32,37 @@
               title="L22" 
               position="3 1 -32"
               image="#nightsky"></a-link>
-      <a-entity id="avatar" wasd-controls="acceleration:100; fly:true" position="0 0 0">
-          <a-entity camera look-controls position="0 1.6 -3"></a-entity>
-        <a-box position="0 0 -5" color="#ff0000"></a-box>
-      </a-entity>
       
-      <a-box position="-10 4 -23" rotation="0 45 0" color="#4CC3D9" 
-             follow="target:#avatar; speed:5"
-             dynamic-body></a-box>
+      
+       <!--  AVATAR with Camera and movement controls -->
+      <a-box  id="avbox"
+              movement-controls="fly:false"
+              link-controls
+              position="0 1 1">
+
+              <a-entity camera
+                      look-controls="pointerLockEnabled:true">
+              
+              <a-entity id="hud"
+                  health="10"
+                  score="0"
+                  text="width:3; value: Start Game!;"
+                  position="0 1 -2"
+              ></a-entity>
+              
+              <a-box id="avatar"
+                static-body
+                scale="0.5 4 0.5" position="0 -1 -2" 
+                material="color:red; transparent:true; opacity:0.3">
+              </a-box>
+                            
+            </a-entity>
+   
+      </a-box>
+      
       
       <a-entity obj-model="obj: #suzy-obj; mtl: #suzy-mtl"
-                position="0 5 -24"
-                follow="target:#avatar; speed:5"
-                dynamic-body="angular-damping:0.99"
+                position="0 1 -24"
                 ></a-entity>
       
       <a-plane position="0 0 -4" rotation="-90 0 0" width="60" height="60" 
