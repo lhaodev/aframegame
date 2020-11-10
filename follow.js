@@ -33,6 +33,7 @@ AFRAME.registerComponent('follow', {
 
     // here we applhy a push toward the target
     if (this.el.body) {
+      console.log(distance)
     this.el.body.applyImpulse(
      new CANNON.Vec3().copy(directionVec3),
      new CANNON.Vec3().copy(this.el.body.position)//getComputedAttribute('position'))

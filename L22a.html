@@ -11,7 +11,7 @@
     <!--  
         This shows how to import an obj file into your model 
       -->
-    <a-scene physics="friction:0.2; restitution:0.2; debug:false"
+    <a-scene physics="friction:0.05; restitution:0.2"
              renderer="antialias:true"
              raycaster="far: 100; objects: [link];" 
              cursor="rayOrigin: mouse" 
@@ -19,11 +19,11 @@
     >
       
       <a-assets>
-        <a-asset-item id="suzy-obj" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsuzaane.obj?v=1602963567447"></a-asset-item>
-        <a-asset-item id="suzy-mtl" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsuzaane.mtl?v=1602963567402"></a-asset-item>
-        <img id="nightsky"
+        <a-asset-item id="suzy-obj" crossorigin="anonymous" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsuzaane.obj?v=1602963567447"></a-asset-item>
+        <a-asset-item id="suzy-mtl" crossorigin="anonymous" src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsuzaane.mtl?v=1602963567402"></a-asset-item>
+        <img id="nightsky" crossorigin="anonymous"
              src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fnightsky.png?v=1603277760890">
-        <img id="rock"
+        <img id="rock" crossorigin="anonymous"
              src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Frck_2.png?v=1603282127948">
       </a-assets>
       
@@ -33,15 +33,25 @@
               title="L22" 
               position="3 1 -32"
               image="#nightsky"></a-link>
+      <a-entity id="avatar" static-body wasd-controls="acceleration:100; fly:true" position="0 0 0">
+          <a-entity camera look-controls position="0 1.6 -3"></a-entity>
+        <a-box position="0 0 -5" color="#ff0000" 
+             static-body></a-box>
+      </a-entity>
       
-      <a-entity camera look-controls wasd-controls="acceleration:100; fly:true" position="0 1.6 0"></a-entity>
-
+      <a-box position="-10 4 -23" rotation="0 45 0" color="#4CC3D9" 
+             follow="target:#avatar; speed:5"
+             dynamic-body></a-box>
+      
       <a-entity obj-model="obj: #suzy-obj; mtl: #suzy-mtl"
-                position="0 1 -4"
-                follow=""
+                position="0 5 -24"
+                follow="target:#avatar; speed:5"
+                dynamic-body="angular-damping:0.99"
                 ></a-entity>
       
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="60" height="60" material="src:#rock; repeat: 60 60"></a-plane>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="60" height="60" 
+               static-body
+               material="src:#rock; repeat: 60 60"></a-plane>
       <a-sky color="#FFCCAA"></a-sky>
     </a-scene>
   </body>
