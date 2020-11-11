@@ -64,8 +64,8 @@ AFRAME.registerComponent('scorekeeper', {
 
     if (otherBody) {
 
-      console.log('in the tick function')
-      console.dir(otherBody)
+      //console.log('in the tick function')
+      //console.dir(otherBody)
       const hud = this.data.target
 
       let elt = otherBody.el
@@ -82,10 +82,10 @@ AFRAME.registerComponent('scorekeeper', {
       }
 
       if (eltTime) {
-        console.log("updating the time!")
+        //console.log("updating the time!")
         this.gameLength += eltTime
       }
-      console.log(this.startTime)
+      //console.log(this.startTime)
 
 
 
@@ -93,27 +93,30 @@ AFRAME.registerComponent('scorekeeper', {
 
 
       if (eltHealth || eltScore || eltTime){
-        console.log('removing elt from scene')
-        console.dir(elt)
-        console.log('parent is ')
-        console.dir(elt.parentNode)
+        //console.log('removing elt from scene')
+        //console.dir(elt)
+        //console.log('parent is ')
+        //console.dir(elt.parentNode)
         otherBody.el.removeAttribute("dynamic-body");
         elt.parentNode.removeChild(elt)
       }
 
-      if (this.health <0){
-        hud.setAttribute('text','value',"YOU LOSE!! GAME OVER!")
-        this.gameOver = true
-      }
-      if (this.score>20){
-        hud.setAttribute('text','value',"YOU WIN!!")
-        this.gameOver = true
-      }
-      if (this.gameOver){
-        console.log("Game Over!") 
-        window.location.href = 'https://a-frame-demos.glitch.me/L22.html';  // this isn't working yet...
-      }
 
+
+    }
+    
+    
+    if (this.health <0){
+      hud.setAttribute('text','value',"YOU LOSE!! GAME OVER!")
+      this.gameOver = true
+    }
+    if (this.score>20){
+      hud.setAttribute('text','value',"YOU WIN!!")
+      this.gameOver = true
+    }
+    if (this.gameOver){
+      console.dir(window.location.href)
+      window.location.href = 'https://a-frame-demos.glitch.me/L22.html';  // this isn't working yet...
     }
   }
 
