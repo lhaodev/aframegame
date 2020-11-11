@@ -10,7 +10,7 @@
     <script id="powerups" type="text/x-nunjucks-template">
       {% for x in range(0, 4) %}
         {% for z in range(0, 10) %}
-          <a-box time={{time}} heath={{health}} score={{points}} color={{color}}
+          <a-box time={{time}} heath={{health}} score={{score}} color={{color}}
                 dynamic-body
                 position="{{ x * 10 - 15 }} 10 {{ z * 10 - 15 }}">
           </a-box>
@@ -18,16 +18,6 @@
       {% endfor %}
     </script>
     
-    <script id="powerups2" type="text/x-nunjucks-template">
-      {% for x in range(0, 4) %}
-        {% for z in range(0, 10) %}
-          <a-box time={{time}} heath={{health}} score={{points}} color={{color}}
-                dynamic-body
-                position="{{ x * 10 - 10 }} {{offset}} {{ z * 10 - 10 }}">
-          </a-box>
-        {% endfor %}
-      {% endfor %}
-    </script>
     
   </head>
   <body>
@@ -48,14 +38,13 @@
              src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fnightsky.png?v=1603277760890">
         <img id="rock" crossorigin="anonymous"
              src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Frck_2.png?v=1603282127948">
+        <img id="sky0"
+             src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fsky0.jpeg?v=1603277733523">
+        
       </a-assets>
       
       
-      <a-link href="L22.html"
-              link-controls
-              title="L22" 
-              position="3 1 -32"
-              image="#nightsky"></a-link>
+
       
       
        <!--  AVATAR with Camera and movement controls -->
@@ -76,7 +65,7 @@
               
               <a-box id="avatar"
                 static-body
-                scorekeeper="timeleft:30"
+                scorekeeper="timeleft:30; winscore:35"
                 scale="0.5 4 0.5" position="0 -1 -2" 
                 material="color:red; transparent:true; opacity:0.3">
               </a-box>
@@ -88,16 +77,16 @@
       <a-entity template="src: #powerups" 
                 data-time="5" 
                 data-health="5"
-                data-points="10"
-                data-color="#ff0000"
+                data-score="7"
+                data-color="#00ff00"
                 
                 ></a-entity>
       
       <a-entity template="src: #powerups" 
-                data-time="5-" 
+                data-time="-5" 
                 data-health="-5"
-                data-points="-10"
-                data-color="#00ff00"
+                data-score="-3"
+                data-color="#ff0000"
                 ></a-entity>
       
       <a-box color="#ffccaa" dynamic-body
@@ -109,9 +98,6 @@
                 position="0 1 -24"
                 ></a-entity>
       
-      <a-box position="-1 4 -3" rotation="0 45 0" color="#4CC3D9" dynamic-body></a-box>
-      <a-box position="1 4 -3" rotation="45 0 0" color="#FF0000" dynamic-body></a-box>
-
 
       <a-plane position="0 0 0" rotation="-90 0 0" width="40" height="40" 
                static-body

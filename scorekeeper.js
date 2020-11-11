@@ -3,7 +3,8 @@ console.log("loading powerup.js")
 AFRAME.registerComponent('scorekeeper', {
   schema: {
     target: {type: 'selector', default:"#hud"},
-    timeleft: {type: 'number', default:20}
+    timeleft: {type: 'number', default:20},
+    winscore: {type: 'number', default:50}
   },
 
 
@@ -42,7 +43,7 @@ AFRAME.registerComponent('scorekeeper', {
       if (pos.z >  wall) pos.z=  wall
       if (pos.z < -wall) pos.z= -wall
       //pos.set(position)
-    }
+    } 
 
     hud.setAttribute('health',this.health)
     hud.setAttribute('score',this.score)
@@ -53,7 +54,7 @@ AFRAME.registerComponent('scorekeeper', {
            + this.health
            + " Time: "
            + Math.round(timeLeft)
-           + "x="+pos.x+" z="+pos.z
+
                     )
 
     if (timeLeft <0) {
