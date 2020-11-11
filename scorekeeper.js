@@ -52,7 +52,9 @@ AFRAME.registerComponent('scorekeeper', {
            + "  Health:"
            + this.health
            + " Time: "
-           + Math.round(timeLeft))
+           + Math.round(timeLeft)
+           + "x="+pos.x+" z="+pos.z
+                    )
 
     if (timeLeft <0) {
      this.gameOver=true
