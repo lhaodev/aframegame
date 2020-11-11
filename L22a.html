@@ -6,6 +6,17 @@
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
     <script src="/link-controls.js"></script>
     <script src="/scorekeeper.js"></script>
+    
+    <script id="powerups" type="text/x-nunjucks-template">
+      {% for x in range(0, 4) %}
+        {% for z in range(0, 10) %}
+          <a-box time="10" heath="5" score="10" scale="0.5 0.5 0.5" 
+                    position="{{ x * 10 - 15 }} 10 {{ z * 10 - 15}}">
+          </a-box>
+        {% endfor %}
+      {% endfor %}
+    </script>
+    
   </head>
   <body>
     <!--  
@@ -53,6 +64,7 @@
               
               <a-box id="avatar"
                 static-body
+                scorekeeper="timeleft:30"
                 scale="0.5 4 0.5" position="0 -1 -2" 
                 material="color:red; transparent:true; opacity:0.3">
               </a-box>
@@ -61,15 +73,24 @@
    
       </a-box>
       
+      <a-entity template="src: #powerups" data-r="0 60 0" ></a-entity>
+      
+      <a-box color="#ffccaa" dynamic-body
+             position="-5 5 -10"
+             health="10" score="5" time="10"></a-box>
+      
       
       <a-entity obj-model="obj: #suzy-obj; mtl: #suzy-mtl"
                 position="0 1 -24"
                 ></a-entity>
       
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="60" height="60" 
-               scorekeeper
+      <a-box position="-1 4 -3" rotation="0 45 0" color="#4CC3D9" dynamic-body></a-box>
+      <a-box position="1 4 -3" rotation="45 0 0" color="#FF0000" dynamic-body></a-box>
+
+
+      <a-plane position="0 0 0" rotation="-90 0 0" width="40" height="40" 
                static-body
-               material="src:#rock; repeat: 60 60"></a-plane>
+               material="src:#rock; repeat: 20 20"></a-plane>
       <a-sky color="#FFCCAA"></a-sky>
     </a-scene>
   </body>

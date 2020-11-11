@@ -14,7 +14,7 @@ AFRAME.registerComponent('scorekeeper', {
     this.score=0
     let z = new Date()
     this.startTime = z.getTime()
-    this.gameLength = 10 // you have 30 seconds to play!
+    this.gameLength = this.data.timeleft // time you have left to play (in seconds)
     this.gameOver = false
 
     this.avatar = document.querySelector("#avbox")
