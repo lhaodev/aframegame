@@ -5,6 +5,7 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
     <script src="/link-controls.js"></script>
+    <script src="/scorekeeper.js"></script>
   </head>
   <body>
     <!--  
@@ -66,6 +67,7 @@
                 ></a-entity>
       
       <a-plane position="0 0 -4" rotation="-90 0 0" width="60" height="60" 
+               scorekeeper
                static-body
                material="src:#rock; repeat: 60 60"></a-plane>
       <a-sky color="#FFCCAA"></a-sky>
