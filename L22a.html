@@ -10,8 +10,20 @@
     <script id="powerups" type="text/x-nunjucks-template">
       {% for x in range(0, 4) %}
         {% for z in range(0, 10) %}
-          <a-box time="10" heath="5" score="10" scale="0.5 0.5 0.5" 
-                    position="{{ x * 10 - 15 }} 10 {{ z * 10 - 15}}">
+          <a-box time={{time}} heath={{health}} score={{points}} color={{color}}
+                dynamic-body
+                position="{{ x * 10 - 15 }} 10 {{ z * 10 - 15 }}">
+          </a-box>
+        {% endfor %}
+      {% endfor %}
+    </script>
+    
+    <script id="powerups2" type="text/x-nunjucks-template">
+      {% for x in range(0, 4) %}
+        {% for z in range(0, 10) %}
+          <a-box time={{time}} heath={{health}} score={{points}} color={{color}}
+                dynamic-body
+                position="{{ x * 10 - 10 }} {{offset}} {{ z * 10 - 10 }}">
           </a-box>
         {% endfor %}
       {% endfor %}
@@ -73,7 +85,20 @@
    
       </a-box>
       
-      <a-entity template="src: #powerups" data-r="0 60 0" ></a-entity>
+      <a-entity template="src: #powerups" 
+                data-time="5" 
+                data-health="5"
+                data-points="10"
+                data-color="#ff0000"
+                
+                ></a-entity>
+      
+      <a-entity template="src: #powerups" 
+                data-time="5-" 
+                data-health="-5"
+                data-points="-10"
+                data-color="#00ff00"
+                ></a-entity>
       
       <a-box color="#ffccaa" dynamic-body
              position="-5 5 -10"
