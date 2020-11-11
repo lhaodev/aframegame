@@ -27,7 +27,7 @@ AFRAME.registerComponent('scorekeeper', {
   },
 
   tick: function(uptime,delta) {
-    if (this.gameOver) return
+
     let z = new Date()
     let t = (z.getTime()-this.startTime)/1000
     let timeLeft = this.gameLength - t
@@ -111,7 +111,7 @@ AFRAME.registerComponent('scorekeeper', {
       }
       if (this.gameOver){
         console.log("Game Over!") 
-        window.location.href = 'http://www.brandeis.edu';  // this isn't working yet...
+        window.location.href = 'https://a-frame-demos.glitch.me/L22.html';  // this isn't working yet...
       }
 
     }
