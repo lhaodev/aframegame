@@ -1,10 +1,14 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="/link-controls.js"></script>
   </head>
   <body>
     
-    <a-scene>
+    <a-scene
+             raycaster="far: 100; objects: [link];" 
+             cursor="rayOrigin: mouse" 
+             camera-position>
       <a-assets>
       <img id="rock" 
            src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Frck_2.png?v=1603282127948">
@@ -18,6 +22,14 @@
            src="https://cdn.glitch.com/9baeb756-4dfe-40ae-a61f-52b72510282b%2Fnightsky.png?v=1603277760890">
       <a-mixin id="woodencube" geometry="primitive: box" material="src:#cherry-light" scale="0.1 1 0.1"></a-mixin>
     </a-assets>
+      
+      
+      <a-link href="L22.html"
+              link-controls
+              title="Back to MainRoom" 
+              position="3 1 -12"
+              image="#sky0"></a-link>
+      
       <a-entity position="0 0 -15">
         <a-box position="-1 2.5 -3" rotation="0 45 0" material="src:#rock"></a-box>
         <a-sphere position="1 2.5 -3" radius="1.25" material="src:#wood"></a-sphere>
