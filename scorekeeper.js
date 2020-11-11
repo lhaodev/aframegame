@@ -109,7 +109,10 @@ AFRAME.registerComponent('scorekeeper', {
         hud.setAttribute('text','value',"YOU WIN!!")
         this.gameOver = true
       }
-
+      if (this.gameOver){
+        console.log("Game Over!") 
+        window.location.href = 'http://www.brandeis.edu';  // this isn't working yet...
+      }
 
     }
   }
