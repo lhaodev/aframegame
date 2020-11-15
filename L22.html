@@ -5,11 +5,12 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
     <script src="/link-controls.js"></script>
+    <script src="/scorekeeper.js"></script>
     
     <script id="coinsTemplate" type="text/x-nunjucks-template">
       {% for x in range(0, 11) %}
         {% for z in range(0, 11) %}
-          <a-cylinder mixin="coin" dynamic-body score="10" scale={{s}}
+          <a-cylinder mixin="coin" dynamic-body health="5" score="10" scale={{s}}
                     position="{{ x * 10 - 50 }} 10 {{ z * 10 - 50}}">
           </a-cylinder>
         {% endfor %}
@@ -20,7 +21,7 @@
       {% for x in range(0, 11) %}
         {% for z in range(0, 11) %}
           <a-box 
-              color="#4CC3D9" 
+              color="#4CC3D9" health="-5"
               position="{{ x * 10 - 50 }} 10 {{ z * 10 - 50}}"
               dynamic-body="angular-damping:0.99">
           </a-box>
@@ -106,6 +107,7 @@
       <!--  AVATAR with Camera and movement controls -->
       <a-box  id="avbox"
               movement-controls="fly:false"
+              scorekeeper="timeleft:500; winscore:35"
               link-controls
               position="0 1 1">
 
