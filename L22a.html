@@ -13,6 +13,7 @@
         {% for z in range(0, 10) %}
           <a-box time={{time}} heath={{health}} score={{score}} color={{color}}
                 dynamic-body
+
                 position="{{ x * 10 - 15 }} 10 {{ z * 10 - 15 }}">
           </a-box>
         {% endfor %}
@@ -26,6 +27,7 @@
         This shows how to import an obj file into your model 
       -->
     <a-scene 
+             physics="friction:0.1"
              renderer="antialias:true"
              raycaster="far: 100; objects: [link];" 
              cursor="rayOrigin: mouse" 
@@ -99,9 +101,15 @@
              health="10" score="5" time="10"></a-box>
       
       
-      <a-entity obj-model="obj: #suzy-obj; mtl: #suzy-mtl"
-                position="0 1 -24"
+      <a-box color="#ffccaa" dynamic-body
+             position="-5 5 -10"
+             health="10" score="5" time="10">
+        <a-entity obj-model="obj: #suzy-obj; mtl: #suzy-mtl"
+                position="0 10 -24"
+                dynamic-body
+                follow="target:#avbox; speed:1"
                 ></a-entity>
+        </a-box>
       
 
       <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="100" 
