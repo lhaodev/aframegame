@@ -16,15 +16,12 @@ AFRAME.registerComponent('follow', {
     var directionVec3 = this.directionVec3;
     this.counter += 1
     this.show = this.counter%100 == 0
-    if (!this.show){
-      return
-    }
+
 
     // Grab position vectors (THREE.Vector3) from the entities' three.js objects.
     var targetPosition = this.data.target.object3D.position;
     var currentPosition = this.el.object3D.position;
     
-    window.avatar = this
 
     // Subtract the vectors to get the direction the entity should head in.
     directionVec3.copy(targetPosition).sub(currentPosition);
@@ -33,15 +30,17 @@ AFRAME.registerComponent('follow', {
     var distance = directionVec3.length();
 
     // Scale the direction vector's magnitude down to match the speed.
-    var factor = this.data.speed / distance;
+    var factor = this.data.speed / distance*10;
    
     window.dv = directionVec3
-    directionVec3['x'] *= factor //* (timeDelta/1000)
-    directionVec3['y'] *= factor //* (timeDelta/1000)
-    directionVec3['z'] *= factor //* (timeDelta/1000)
+    timeDelta=1000
+    directionVec3['x'] *= factor * (timeDelta/1000)
+    directionVec3['y'] *= factor * (timeDelta/1000)
+    directionVec3['z'] *= factor * (timeDelta/1000)
     //['x', 'y', 'z'].forEach(function (axis) {
     //  directionVec3[axis] *= factor * (timeDelta / 1000);
     //});
+
     
     if (this.show) {
       console.log('target='+JSON.stringify(targetPosition))
@@ -56,12 +55,15 @@ AFRAME.registerComponent('follow', {
     }
     // here we applhy a push toward the target
     if (this.el.body) {
+        let d = directionVec3
+        let p = this.el.object3D.position
+        this.el.object3D.position.set(p.x+d.x, p.y+d.y, p.z+d.z)
       //console.log(distance)
       //console.log('pos='+this.el.object3D.position)
-      this.el.body.applyImpulse(
-         new CANNON.Vec3().copy(directionVec3),
-         new CANNON.Vec3().copy(this.el.body.position)//getComputedAttribute('position'))
-       )
+      //this.el.body.applyImpulse(
+      //   new CANNON.Vec3().copy(directionVec3),
+      //   new CANNON.Vec3().copy(this.el.body.position)//getComputedAttribute('position'))
+      // )
    }
   }
 });
