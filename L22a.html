@@ -27,7 +27,7 @@
         This shows how to import an obj file into your model 
       -->
     <a-scene 
-             physics="friction:0.1"
+             physics="friction:0.1; restitution: 0.2"
              renderer="antialias:true"
              raycaster="far: 100; objects: [link];" 
              cursor="rayOrigin: mouse" 
@@ -101,15 +101,17 @@
              health="10" score="5" time="10"></a-box>
       
       
-      <a-box color="#ffccaa" dynamic-body
-             position="-5 5 -10"
-             health="10" score="5" time="10">
+      <a-box color="#ffccaa" 
+             position="0 10 -24"
+             height="3" width="2" depth="2"
+             material="transparent:true; opacity:0.2"
+             dynamic-body
+             follow="target:#avbox; speed:1"
+             health="-100" score="-100" time="10">
         <a-entity obj-model="obj: #suzy-obj; mtl: #suzy-mtl"
-                position="0 10 -24"
-                dynamic-body
-                follow="target:#avbox; speed:1"
+                position="0 1 0"
                 ></a-entity>
-        </a-box>
+      </a-box>
       
 
       <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="100" 

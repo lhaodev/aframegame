@@ -30,9 +30,9 @@ AFRAME.registerComponent('follow', {
     // Scale the direction vector's magnitude down to match the speed.
     var factor = this.data.speed / distance;
     console.log('factor='+factor)
-    directionVec3['x'] *= factor * (timeDelta/1000)
-    directionVec3['y'] *= factor * (timeDelta/1000)
-    directionVec3['z'] *= factor * (timeDelta/1000)
+    directionVec3['x'] += factor * (timeDelta/1000)
+    directionVec3['y'] += factor * (timeDelta/1000)+0.1
+    directionVec3['z'] += factor * (timeDelta/1000)
     //['x', 'y', 'z'].forEach(function (axis) {
     //  directionVec3[axis] *= factor * (timeDelta / 1000);
     //});
