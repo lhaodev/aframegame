@@ -11,7 +11,7 @@
     <script id="powerups" type="text/x-nunjucks-template">
       {% for x in range(0, 4) %}
         {% for z in range(0, 10) %}
-          <a-box time={{time}} heath={{health}} score={{score}} color={{color}}
+          <a-box time={{time}} health={{health}} score={{score}} color={{color}}
                 dynamic-body
 
                 position="{{ x * 10 - 15 }} 10 {{ z * 10 - 15 }}">
@@ -57,6 +57,7 @@
       <a-box  id="avbox"
               movement-controls="fly:false"
               link-controls
+              scorekeeper="timeleft:500; winscore:35"
               position="0 1 1">
 
               <a-entity camera
@@ -71,7 +72,7 @@
               
               <a-box id="avatar"
                 static-body
-                scorekeeper="timeleft:500; winscore:35"
+                
                 scale="0.5 4 0.5" position="0 -1 -2" 
                 material="color:red; transparent:true; opacity:0.3">
               </a-box>

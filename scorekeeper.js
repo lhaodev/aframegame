@@ -116,7 +116,8 @@ AFRAME.registerComponent('scorekeeper', {
     }
     if (this.gameOver){
       hud.setAttribute('text','value',"Moving to new Game\n Please Wait")
-      window.location.href = 'https://a-frame-demos.glitch.me/L22.html'; 
+      this.el.object3D.position.y = 10 // move the avatar above the board!
+      window.location.href = '/gameover.html'; 
     }
   }
 

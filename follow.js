@@ -13,7 +13,7 @@ AFRAME.registerComponent('follow', {
   
   init: function () {
     // here we just initialize the directionVec3 variable
-    // this.directionVec3 = new THREE.Vector3();
+    this.directionVec3 = new THREE.Vector3();
   },
   
   
