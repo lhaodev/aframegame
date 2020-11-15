@@ -29,6 +29,11 @@ AFRAME.registerComponent('follow', {
     // Calculate the distance.
     var distance = directionVec3.length();
 
+    if (distance<0.5) {
+      console.dir(this.data.target)
+      window.location.href = '/index.html'; 
+    }
+
     // Scale the direction vector's magnitude down to 1...
     directionVec3['x'] /= distance 
     directionVec3['y'] /= distance 

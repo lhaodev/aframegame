@@ -116,7 +116,7 @@ AFRAME.registerComponent('scorekeeper', {
     }
     if (this.gameOver){
       hud.setAttribute('text','value',"Moving to new Game\n Please Wait")
-      window.location.href = 'https://a-frame-demos.glitch.me/L22.html';  // this isn't working yet...
+      window.location.href = 'https://a-frame-demos.glitch.me/L22.html'; 
     }
   }
 
