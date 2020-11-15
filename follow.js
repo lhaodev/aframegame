@@ -23,23 +23,25 @@ AFRAME.registerComponent('follow', {
 
     // Subtract the vectors to get the direction the entity should head in.
     directionVec3.copy(targetPosition).sub(currentPosition);
-
+    console.log('dirvec1='.JSON.stringify(directionVec3))
     // Calculate the distance.
     var distance = directionVec3.length();
 
     // Scale the direction vector's magnitude down to match the speed.
     var factor = this.data.speed / distance;
+    console.log('factor='+factor)
     ['x', 'y', 'z'].forEach(function (axis) {
       directionVec3[axis] *= factor * (timeDelta / 1000);
     });
-    //console.log(JSON.stringify(directionVec3))
+    console.log('dirvec2='.JSON.stringify(directionVec3))
+    console.log('\n\n')
 
     // here we applhy a push toward the target
     if (this.el.body) {
       //console.log(distance)
       this.el.object3D.position 
-    //this.el.body.applyImpulse(
-     //new CANNON.Vec3().copy(directionVec3),
+      this.el.body.applyImpulse(
+         new CANNON.Vec3().copy(directionVec3),
      //new CANNON.Vec3().copy(this.el.body.position)//getComputedAttribute('position'))
     //)
    }

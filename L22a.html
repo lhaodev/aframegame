@@ -6,6 +6,7 @@
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
     <script src="/link-controls.js"></script>
     <script src="/scorekeeper.js"></script>
+    <script src="/follow.js"></script>
     
     <script id="powerups" type="text/x-nunjucks-template">
       {% for x in range(0, 4) %}
@@ -44,6 +45,7 @@
       </a-assets>
       
       <a-box time="120" health="100" color="#0000ff"
+                follow="target:#avbox; speed:10"
                 dynamic-body
                 position="0 5 -10">
           </a-box>
