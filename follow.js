@@ -29,17 +29,18 @@ AFRAME.registerComponent('follow', {
     // Calculate the distance.
     var distance = directionVec3.length();
 
-    // Scale the direction vector's magnitude down to match the speed.
-    var factor = this.data.speed / distance*10;
-   
-    window.dv = directionVec3
-    timeDelta=1000
-    directionVec3['x'] *= factor * (timeDelta/1000)
-    directionVec3['y'] *= factor * (timeDelta/1000)
-    directionVec3['z'] *= factor * (timeDelta/1000)
-    //['x', 'y', 'z'].forEach(function (axis) {
-    //  directionVec3[axis] *= factor * (timeDelta / 1000);
-    //});
+    // Scale the direction vector's magnitude down to 1...
+    directionVec3['x'] /= distance 
+    directionVec3['y'] /= distance 
+    directionVec3['z'] /= distance
+    // 
+    
+    var factor = this.data.speed * (timeDelta/1000);
+
+    directionVec3['x'] *= factor 
+    directionVec3['y'] *= factor 
+    directionVec3['z'] *= factor 
+
 
     
     if (this.show) {
@@ -58,12 +59,6 @@ AFRAME.registerComponent('follow', {
         let d = directionVec3
         let p = this.el.object3D.position
         this.el.object3D.position.set(p.x+d.x, p.y+d.y, p.z+d.z)
-      //console.log(distance)
-      //console.log('pos='+this.el.object3D.position)
-      //this.el.body.applyImpulse(
-      //   new CANNON.Vec3().copy(directionVec3),
-      //   new CANNON.Vec3().copy(this.el.body.position)//getComputedAttribute('position'))
-      // )
    }
   }
 });

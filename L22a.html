@@ -100,12 +100,13 @@
              health="10" score="5" time="10"></a-box>
       
       
-      <a-box color="#ffccaa" 
-             position="0 10 -24"
+      <a-box comment="this is an NPC box that follow the avatar"
+             color="#ffccaa" 
+             position="0 1 -24"
              height="3" width="2" depth="2"
              material="transparent:true; opacity:0.4"
-             dynamic-body
-             follow="target:#avbox; speed:5"
+             static-body
+             follow="target:#avbox; speed:1"
              health="-100" score="-100" time="10">
         <a-entity obj-model="obj: #suzy-obj; mtl: #suzy-mtl"
                 position="0 1 0"
