@@ -17,7 +17,8 @@ AFRAME.registerComponent('follow', {
     // Grab position vectors (THREE.Vector3) from the entities' three.js objects.
     var targetPosition = this.data.target.object3D.position;
     var currentPosition = this.el.object3D.position;
-
+    console.log('target='+JSON.stringify(targetPosition))
+    console.log('current='+JSON.stringify(currentPosition))
     window.avatar = this
 
     // Subtract the vectors to get the direction the entity should head in.
