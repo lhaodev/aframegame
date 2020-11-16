@@ -56,12 +56,14 @@
        <!--  AVATAR with Camera and movement controls -->
       <a-box  id="avbox"
               movement-controls="fly:false"
+              
               link-controls
               scorekeeper="timeleft:500; winscore:35"
-              position="0 1 1">
+              position="0 1 35">
 
               <a-entity camera
-                      look-controls="pointerLockEnabled:true">
+                        look-controls="pointerLockEnabled:false"
+                      >
               
               <a-entity id="hud"
                   health="10"
@@ -115,9 +117,9 @@
       </a-box>
       
 
-      <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="100" 
+      <a-plane position="0 0 0" rotation="-90 0 0" width="1000" height="1000" 
                static-body
-               material="src:#rock; repeat: 20 20"></a-plane>
+               material="src:#rock; repeat: 200 200"></a-plane>
       <a-sky color="#FFCCAA"></a-sky>
     </a-scene>
   </body>
