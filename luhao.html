@@ -9,27 +9,6 @@
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script>
     <script src="follow.js"></script>
 
-
-    <script id="boxTemplate" type="text/x-nunjucks-template">
-        {% for x in range(0, 11) %}
-            <a-box width="1"
-                    ammo-body="type:dynamic" ammo-shape="type:box"
-                    material="src:wood.jpg;  repeat:1 1"  
-                    position="0 {{3*x}} -10">
-            </a-box>
-        {% endfor %}
-      </script>
-
-    <script id="npcTemplate" type="text/x-nunjucks-template">
-        {% for x in range(0, 11) %}
-            <a-box width="1"
-                    follow="target:#avatar;dist:10;speed:5;url:luhao.html"
-                    ammo-body="type:kinematic" ammo-shape="type:box"
-                    material="color:green"  
-                    position="{{3*x}} 0 -30">
-            </a-box>
-        {% endfor %}
-      </script>
     <script>
         THREE.inverse = THREE.invert
     </script>
@@ -42,24 +21,23 @@
     -->
     <a-scene physics="driver: ammo; debug: false; debugDrawMode: 1;">
 
+        <a-entity id="jabba1" gltf-model="lujabba.gltf" follow="target:#box1;url:luhao.html;speed:5; dist:100" 
+            ammo-body="type:kinematic" animation-mixer="clip:Nod; timeScale:0.1" position="0 0 -50"></a-entity>
+        <a-entity id="jabba2" gltf-model="lujabba.gltf" follow="target:#box2;url:luhao.html;speed:5; dist:100"
+            ammo-body="type:kinematic" animation-mixer="clip:Nod; timeScale:0.1" position="0 0 -50"></a-entity>
+
         <a-assets>
             <a-mixin id="wall" geometry="primitive:box;width:190; height:10; depth:1"
                 material="src:wood.jpg;  repeat:20 1"></a-mixin>
         </a-assets>
 
-        <a-entity template="src: #boxTemplate"></a-entity>
 
-        <a-entity template="src: #npcTemplate"></a-entity>
-
-        <a-box id="box0" follow="target:#avatar;url:next.html; speed:2; dist:10" ammo-body="type:kinematic"
-            ammo-shape="type:box" material="color:red;  repeat:1 1" position="-10 0 -10">
+        <a-box id="box1" follow="target:#avatar; speed:0; dist:10" ammo-body="type:static"
+            ammo-shape="type:box" material="color:red" position="-10 0 -10">
         </a-box>
-
-        <a-box follow="target:#box0; speed:1; dist:10" ammo-body="type:kinematic" ammo-shape="type:box"
-            material="color:red;  repeat:1 1" position="-10 0 -20">
+        <a-box id="box2" follow="target:#avatar; speed:0; dist:10" ammo-body="type:static" ammo-shape="type:box"
+                    material="color:red" position="10 0 -10">
         </a-box>
-
-
 
         <!-- Floor -->
         <a-box id="floor" ammo-body="type:static;" ammo-shape="type:box" width="200" height="200" depth="1"
@@ -88,10 +66,7 @@
             <a-entity id="hud" health="10" score="0" text="width:3; value: Start Game!;" position="0 1 -2"></a-entity>
         </a-entity>
 
-        <a-sphere material="src:wood.jpg; color:orange" position="3 12.5 -5" ammo-body="type: dynamic;"
-            ammo-shape="type: sphere" radius="2"></a-sphere>
-
-        <a-sphere material="color:yellow" position="6 12.5 -5" ammo-body="type: dynamic;" ammo-shape="type: sphere"
+        <a-sphere material="src:wood.jpg" position="0 0 -20" follow="target:#avatar;dist:100;speed:-3;url:next.html" ammo-body="type: static;"  ammo-shape="type: sphere"
             radius="2"></a-sphere>
 
         <a-sky material="src:background.jpg"></a-sky>
