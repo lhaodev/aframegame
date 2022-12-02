@@ -28,7 +28,7 @@
         id="jabba1"
         gltf-model="jabba.gltf"
         animation-mixer="clip:nod"
-        position="-6 1 -10"
+        position="-4.327 1.566 -11.037"
       ></a-entity>
 
       <a-entity
@@ -37,7 +37,6 @@
         animation-mixer="clip:transform"
         position="-8 1 -10"
       ></a-entity>
-
 
       <a-entity
         id="ghost"
@@ -54,6 +53,14 @@
         position="20 1 -10"
         follow="target:#avatar;speed:1;dist:100;url:practice.html"
       ></a-entity>
+
+      <a-torus-knot
+        material="src:wood.jpg; color:orange"
+        position="10 0 -5"
+        ammo-body="type: dynamic;"
+        ammo-shape="type: sphere"
+        radius="2"
+      ></a-torus-knot>
 
       <a-box
         id="floor"
@@ -73,12 +80,12 @@
         radius-top=".1"
         height="5"
         color="yellow"
-        position="-10 1 -10"
+        position="-11.053 1 -8.972"
       ></a-cone>
 
       <a-cone
         material="color:blue"
-        position="5 1 -10"
+        position="7.229 1.471 -8.174"
         ammo-body="type: dynamic;"
         ammo-shape="type: cone"
         radius="2"
