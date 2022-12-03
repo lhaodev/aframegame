@@ -8,8 +8,36 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script>
     <script src="follow.js"></script>
+    <script id="rightTemplate" type="text/x-nunjucks-template">
+            {% for x in range(1, 5) %}
+                <a-box width="1"
+                        follow="target:#avatar;speed:0.5; distance:10; url:luhao.html"
+                        ammo-body="type:static" ammo-shape="type:box"
+                        material="color:red"  
+                        position="{{6*x}} 0 -{{6*x}}">
+                </a-box>
+            {% endfor %}
+          </script>
+          <script id="leftTemplate" type="text/x-nunjucks-template">
+            {% for x in range(1, 5) %}
+                 <a-box width="1"
+                    follow="target:#avatar;speed:0.5; distance:10; url:luhao.html"
+                        ammo-body="type:static" ammo-shape="type:box"
+                            material="color:red"  
+                            position="-{{6*x}} 0 -{{6*x}}">
+                        </a-box>
+                        {% endfor %}
+           </script>
 
+                
+ 
     <script>
+
+    
+
+
+
+
         THREE.inverse = THREE.invert
     </script>
 </head>
@@ -21,23 +49,78 @@
     -->
     <a-scene physics="driver: ammo; debug: false; debugDrawMode: 1;">
 
-        <a-entity id="jabba1" gltf-model="lujabba.gltf" follow="target:#box1;url:luhao.html;speed:5; dist:100" 
-            ammo-body="type:kinematic" animation-mixer="clip:Nod; timeScale:0.1" position="0 0 -50"></a-entity>
-        <a-entity id="jabba2" gltf-model="lujabba.gltf" follow="target:#box2;url:luhao.html;speed:5; dist:100"
-            ammo-body="type:kinematic" animation-mixer="clip:Nod; timeScale:0.1" position="0 0 -50"></a-entity>
+        <a-entity template="src: #rightTemplate"></a-entity>
+        <a-entity template="src: #leftTemplate"></a-entity>
+        
 
+        <a-box follow="target:#avatar;url:luhao.html;" material="color:red" ammo-body="type:static"
+            position="0 0 -40"></a-box>
+        <a-box follow="target:#avatar;url:luhao.html;" material="color:red" ammo-body="type:static" position="0 0 -30"></a-box>
+        <a-box follow="target:#avatar;url:luhao.html;" material="color:red" ammo-body="type:static" position="0 0 -20"></a-box>
+
+        <a-box follow="target:#avatar;url:luhao.html;" material="color:red" ammo-body="type:static" position="0 0 -15"></a-box>
+        <a-box follow="target:#avatar;url:luhao.html;" material="color:red" ammo-body="type:static" position="0 0 -10"></a-box>
+
+        <a-entity id="jabba1" gltf-model="lujabba.gltf" follow="target:#avatar;url:luhao.html;" 
+            ammo-body="type:static" animation-mixer="clip:Nod; timeScale:1" position="50 0 -10" animation="property: position; to: -50 0 -10; dur: 4000; easing: linear; loop: true"></a-entity>
+        <a-box follow="target:#avatar;url:luhao.html;" material="src:thickwood.jpg;"
+            ammo-body="type:static" position="-50 0 -15" animation="property: position; to: 50 0 -15; dur: 6000; easing: linear; loop: true"></a-box>
+        <a-sphere  follow="target:#avatar;url:luhao.html;" material="color:pink;"
+            ammo-body="type:static" position="50 1 -20" animation="property: position; to: -50 1 -20; dur: 8000; easing: linear; loop: true"></a-sphere>
+        
+        <a-ring  follow="target:#avatar;url:luhao.html;" material="src:sand.jpeg"
+                ammo-body="type:static" radius-inner="1" radius-outer="2" position="-50 5 -25" animation="property: position; to: 50 0 -25; dur: 10000; easing: easeInOutSine; loop: true"></a-ring>
+        <a-entity id="jabba2" gltf-model="lujabba.gltf" follow="target:#avatar;url:luhao.html;" ammo-body="type:static"
+            animation-mixer="clip:Grow; timeScale:1" position="50 0 -30"
+            animation="property: position; to: -50 0 -30; dur: 4000; easing: linear; loop: true"></a-entity>
+        
+        <a-entity id="jabba3" gltf-model="lujabba.gltf" follow="target:#avatar;url:luhao.html;" ammo-body="type:static"
+            animation-mixer="clip:Nod; timeScale:1" position="-50 0 -35"
+            animation="property: position; to: 50 0 -35; dur: 4000; easing: linear; loop: true"></a-entity>
+        
+        <a-ring follow="target:#avatar;url:luhao.html;" material="src:sand.jpeg" ammo-body="type:kinematic" radius-inner="1"
+            radius-outer="2" position="50 5 -40"
+            animation="property: position; to: -50 0 -40; dur: 10000; easing: easeInOutSine; loop: true"></a-ring>
+
+        <a-sphere follow="target:#avatar;url:luhao.html;" material="color:pink;" ammo-body="type:static" position="-50 1 -50"
+            animation="property: position; to: 50 1 -50; dur: 8000; easing: linear; loop: true"></a-sphere>
+
+        <a-box follow="target:#avatar;url:luhao.html;" material="src:thickwood.jpg;" ammo-body="type:static"
+            position="50 0 -55" animation="property: position; to: -50 0 -55; dur: 6000; easing: linear; loop: true"></a-box>
+
+        <a-entity id="jabba4" gltf-model="lujabba.gltf" follow="target:#avatar;url:luhao.html;" ammo-body="type:static"
+            animation-mixer="clip:Grow; timeScale:1" position="-50 0 -60"
+            animation="property: position; to: 50 0 -60; dur: 4000; easing: linear; loop: true"></a-entity>
+
+        
         <a-assets>
             <a-mixin id="wall" geometry="primitive:box;width:190; height:10; depth:1"
                 material="src:wood.jpg;  repeat:20 1"></a-mixin>
         </a-assets>
 
+<!-- <a-entity follow="target:#avatar;url:luhao.html;" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
+    <a-sphere position="5 0 0" color="blue" ></a-sphere>
+</a-entity> -->
 
-        <a-box id="box1" follow="target:#avatar; speed:0; dist:10" ammo-body="type:static"
-            ammo-shape="type:box" material="color:red" position="-10 0 -10">
+<!-- <a-entity follow="target:#avatar;url:luhao.html;" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
+    <a-sphere position="5 20 20" color="yellow"></a-sphere>
+</a-entity> -->
+
+
+        <!-- <a-box id="box1" follow="target:#avatar; speed:0; dist:10" ammo-body="type:static"
+            ammo-shape="type:box" material="color:red" position="-50 0 -10">
         </a-box>
         <a-box id="box2" follow="target:#avatar; speed:0; dist:10" ammo-body="type:static" ammo-shape="type:box"
-                    material="color:red" position="10 0 -10">
+                    material="color:red" position="50 0 -15">
         </a-box>
+
+        <a-box id="box3" follow="target:#avatar; speed:0; dist:10" ammo-body="type:static" ammo-shape="type:box"
+                    material="color:red" position="-50 0 -20">
+        </a-box>
+
+        <a-box id="box4" follow="target:#avatar; speed:0; dist:10" ammo-body="type:static" ammo-shape="type:box"
+                    material="color:red" position="50 0 -25">
+        </a-box> -->
 
         <!-- Floor -->
         <a-box id="floor" ammo-body="type:static;" ammo-shape="type:box" width="200" height="200" depth="1"
@@ -47,13 +130,13 @@
         <!-- walls are defined with mixins but ammo-body,ammo-shape
          can not be in the mixin ...
     -->
-        <a-entity id='northwall' mixin="wall" ammo-body="type:static;" ammo-shape="type:box" position="0 5 -100">
+        <a-entity id='northwall' material = "color:red"  mixin="wall" ammo-body="type:static;" ammo-shape="type:box" position="0 5 -100">
         </a-entity>
         <a-entity id='southwall' mixin="wall" ammo-body="type:static;" ammo-shape="type:box" position="0 5 100">
         </a-entity>
         <a-entity id='eastwall' mixin="wall" ammo-body="type:static;" ammo-shape="type:box" rotation="0 90 0"
             position="100 5 0"></a-entity>
-        <a-entity id='westwall' mixin="wall" ammo-body="type:static;" ammo-shape="type:box" rotation="0 90 0"
+        <a-entity id='westwall'  mixin="wall" ammo-body="type:static;" ammo-shape="type:box" rotation="0 90 0"
             position="-100 5 0"></a-entity>
 
 
@@ -66,8 +149,8 @@
             <a-entity id="hud" health="10" score="0" text="width:3; value: Start Game!;" position="0 1 -2"></a-entity>
         </a-entity>
 
-        <a-sphere material="src:wood.jpg" position="0 0 -20" follow="target:#avatar;dist:100;speed:-3;url:next.html" ammo-body="type: static;"  ammo-shape="type: sphere"
-            radius="2"></a-sphere>
+        <a-box id = "goal0" material="src:wood.jpg;color:#65FF00" position="0 0 -70" follow="target:#avatar;url:lingyuliu.html" ammo-body="type: kinematic;"  ammo-shape="type: box"
+            width="3" height="1" depth="10"></a-box>
 
         <a-sky material="src:background.jpg"></a-sky>
 
