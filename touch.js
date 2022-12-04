@@ -1,12 +1,10 @@
-// this is a simple component to get a static object to follow another object, usually the avatar
-//  call it as follow="target:#avbox; speed:1"
+// this is a simple component to navigation to another page when two object collide
+//  call it as follow="target:#avbox; url:xxxx.html"
 
-AFRAME.registerComponent("follow", {
+AFRAME.registerComponent("touch", {
   schema: {
     target: { type: "selector" }, // entity to follow
-    speed: { type: "number" }, // speed to follow at
     url: { type: "string" }, // url to go to when target is hit
-    dist: { type: "number", default: 5 }, // distance where following starts
   },
 
   init: function () {
@@ -42,26 +40,6 @@ AFRAME.registerComponent("follow", {
       window.location.href = this.data.url;
     } else if (distance > this.data.dist) {
       return;
-    }
-
-    // Scale the direction vector's magnitude down to 1...
-    directionVec3["x"] /= distance;
-    directionVec3["y"] /= distance;
-    directionVec3["z"] /= distance;
-    //
-
-    // calculate a factor so the movement is independent of refresh rate or computer speed
-    var factor = this.data.speed * (timeDelta / 1000);
-
-    directionVec3["x"] *= factor;
-    directionVec3["y"] *= factor;
-    directionVec3["z"] *= factor;
-
-    // here we move the following object toward the target
-    if (this.el.object3D) {
-      let d = directionVec3;
-      let p = this.el.object3D.position;
-      this.el.object3D.position.set(p.x + d.x, p.y + d.y, p.z + d.z);
     }
   },
 });

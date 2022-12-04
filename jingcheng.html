@@ -1,0 +1,162 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <!-- ammo -->
+    <script src="https://mixedreality.mozilla.org/ammo.js/builds/ammo.wasm.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <!-- navigation -->
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script>
+    <script src="follow.js"></script>
+    <script src="touch.js"></script>
+
+    <script id="npcTemplate" type="text/x-nunjucks-template">
+      {% for x in range(-12, 12) %}
+          {% for y in range(-12,10)%}
+          <a-box width="1" height="1" depth="1"
+                  follow="target:#ball;dist:30;speed:6;url:gameover.html"
+                  ammo-body="type:kinematic" ammo-shape="type:box"
+                  material="color:black"
+                  position="{{8*x}} 0 {{6*y}}">
+          </a-box>
+          {% endfor %}
+      {% endfor %}
+    </script>
+    <script>
+      THREE.inverse = THREE.invert;
+    </script>
+  </head>
+  <body>
+    <!--
+        We use the Ammo Physics system here.
+        https://github.com/n5ro/aframe-physics-system/blob/HEAD/AmmoDriver.md#ammo-body       
+    -->
+    <!-- You cannot put the ammo-body ammo-shape into the mixin -->
+    <a-scene physics="driver: ammo; debug: false; debugDrawMode: 1;">
+      <a-assets>
+        <a-mixin
+          id="wall"
+          geometry="primitive:box;width:200; height:10; depth:1"
+          material="src:wood.jpg;  repeat:20 1"
+        ></a-mixin>
+      </a-assets>
+
+      <a-entity template="src: #npcTemplate"></a-entity>
+      <a-entity
+        gltf-model="human.gltf"
+        animation-mixer="clip:bow"
+        position="0 4 -98"
+        rotation="0 -90 0"
+      ></a-entity>
+
+      <a-box
+        id="goalkeeper"
+        material="src:wood.jpg"
+        position="0 0.5 -98"
+        height="1"
+        width="1"
+        depth="1"
+      ></a-box>
+
+      <!-- Floor -->
+      <a-box
+        id="floor"
+        ammo-body="type:static;"
+        ammo-shape="type:box"
+        width="200"
+        height="200"
+        depth="1"
+        rotation="-90 0 0"
+        position="0 -0.5 0"
+        material="src:grass.jpg; repeat:40 40"
+      ></a-box>
+
+      <!-- Ceiling -->
+      <a-box
+        id="ceiling"
+        ammo-body="type:static;"
+        ammo-shape="type:box"
+        width="200"
+        height="200"
+        depth="1"
+        rotation="-90 0 0"
+        position="0 10 0"
+        material="src:colorful_sky.jpg;"
+      ></a-box>
+
+      <!-- walls are defined with mixins but ammo-body,ammo-shape
+         can not be in the mixin ...
+    -->
+      <a-entity
+        id="northwall"
+        mixin="wall"
+        ammo-body="type:static;"
+        ammo-shape="type:box"
+        position="0 5 -100"
+      ></a-entity>
+      <a-entity
+        id="southwall"
+        mixin="wall"
+        ammo-body="type:static;"
+        ammo-shape="type:box"
+        position="0 5 100"
+      ></a-entity>
+      <a-entity
+        id="eastwall"
+        mixin="wall"
+        ammo-body="type:static;"
+        ammo-shape="type:box"
+        rotation="0 90 0"
+        position="100 5 0"
+      ></a-entity>
+      <a-entity
+        id="westwall"
+        mixin="wall"
+        ammo-body="type:static;"
+        ammo-shape="type:box"
+        rotation="0 90 0"
+        position="-100 5 0"
+      ></a-entity>
+
+      <!-- avatar -->
+      <a-entity
+        id="avatar"
+        movement-controls="fly:false"
+        look-controls="pointerLockEnabled:false"
+        oculus-go-controls
+        wasd-controls
+      >
+        <!-- kinematic means it will interact with dynamic things -->
+        <a-box
+          ammo-body="type:kinematic;"
+          ammo-shape="type:box"
+          material="color:blue; opacity:0.5"
+          position="0 0 100"
+          width="1"
+          height="1"
+          depth="5"
+        ></a-box>
+        <a-entity camera position="0 1.6 100"></a-entity>
+        <a-entity
+          id="hud"
+          health="10"
+          score="0"
+          text="width:3; value:Send ball to the gate and avoid the green box!;"
+          position="0 1 -2"
+        ></a-entity>
+      </a-entity>
+
+      <a-sphere
+        id="ball"
+        touch="target:#goalkeeper;url:level_yiwen.html"
+        material="src:wood.jpg"
+        position="0 0 90"
+        ammo-body="type: dynamic;"
+        ammo-shape="type: sphere"
+        radius="1"
+      ></a-sphere>
+
+      <a-sky material="src:evening.jpeg"></a-sky>
+    </a-scene>
+  </body>
+</html>
