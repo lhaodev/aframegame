@@ -14,7 +14,7 @@
       {% for x in range(-12, 12) %}
           {% for y in range(-12,10)%}
           <a-box width="1" height="1" depth="1"
-                  follow="target:#ball;dist:30;speed:6;url:gameover.html"
+                  follow="target:#ball;dist:30;speed:6;url:jingcheng.html"
                   ammo-body="type:kinematic" ammo-shape="type:box"
                   material="color:black"
                   position="{{8*x}} 0 {{6*y}}">
@@ -141,8 +141,8 @@
           id="hud"
           health="10"
           score="0"
-          text="width:3; value:Send ball to the gate and avoid the green box!;"
-          position="0 1 -2"
+          text="width:20; value:Pass the ball to your teammate and avoid the black box!;"
+          position="0 5 90"
         ></a-entity>
       </a-entity>
 
