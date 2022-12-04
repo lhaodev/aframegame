@@ -13,11 +13,18 @@
 
     <script id="coinsTemplate" type="text/x-nunjucks-template">
       {% for x in range(0, 11) %}
-        {% for z in range(0, 11) %}
+        {% for z in range(0,11) %}
           <a-entity gltf-model="#coin" score="1" scale={{s}}  ammo-body="type:static" 
             position="{{ x * 10 - 50 }} 1 {{ z * 10 - 50}}" animation-mixer ></a-entity>
+        {% endfor %}
+      {% endfor %}
+    </script>
+
+    <script id="coinsTemplate2" type="text/x-nunjucks-template">
+      {% for x in range(0, 5) %}
+        {% for z in range(0, 5) %}
           <a-cylinder dynamic-body mixin="coin2" health="5" score="5" scale={{s}}
-                    position="{{ x * 10 - 50 }} 1 {{ z * 10 - 50}}">
+                    position="{{ x * 20 - 45 }} 1 {{ z * 20 - 50}}" >
           </a-cylinder>
         {% endfor %}
       {% endfor %}
@@ -45,7 +52,7 @@
 
       <a-mixin id="coin2"
                     rotation="90 0 0"
-                    material="color:transparent">
+                    material="color:yellow">
                 </a-mixin>
     </a-assets>
 
@@ -87,7 +94,7 @@
 
     <!-- coins -->
     <a-entity template="src: #coinsTemplate" data-s="0.4 0.1 0.4" ></a-entity>
-      
+    <a-entity template="src: #coinsTemplate2" data-s="0.4 0.1 0.4" ></a-entity>
     <a-entity template="src: #monsterTemplate"></a-entity>
     <!-- <a-entity mixin="coin"  gltf-model="#coin" score="7" position="-1.6 2 -8.3" animation-mixer ></a-entity>
     <a-entity mixin="coin" gltf-model="#coin" score="7" position="-1.6 2 -7.3" animation-mixer ></a-entity>
