@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script> 
+    <script src="/link-controls.js"></script>
+    <script src="follow.js"></script>
+    <script src="finish.js"></script>
+    <script src="scorekeeper.js"></script>
+  </head>
+  <body>
+
+    <script id="coinsTemplate" type="text/x-nunjucks-template">
+      {% for x in range(0, 11) %}
+        {% for z in range(0, 11) %}
+          <a-entity gltf-model="#coin" score="1" scale={{s}} 
+            position="{{ x * 10 - 50 }} 1 {{ z * 10 - 50}}" animation-mixer ></a-entity>
+          <!-- <a-cylinder dynamic-body mixin="coin2" health="5" score="10" scale={{s}}
+                    position="{{ x * 10 - 50 }} 1 {{ z * 10 - 50}}">
+          </a-cylinder> -->
+        {% endfor %}
+      {% endfor %}
+    </script>
+
+  <a-scene physics="friction:0.2; restitution:0.2; debug:false"
+  renderer="antialias:true"
+  raycaster="far: 100; objects: [link];" 
+  cursor="rayOrigin: mouse" 
+  camera-position>
+    <a-assets>
+      <a-mixin id="coin" src="coin.gltf"></a-mixin>
+      
+      <a-mixin id="coin2"
+                    rotation="90 0 0"
+                    material="color:goldenrod">
+                </a-mixin>
+    </a-assets>
+
+    <!-- avatar -->
+    <a-box  id="avbox"
+      movement-controls="fly:false"
+      scorekeeper="timeleft:500; winscore:35"
+      link-controls
+      position="0 1 30">
+
+      <a-entity camera look-controls="pointerLockEnabled:false">
+              
+      
+      <a-entity id="hud"
+          health="10"
+          score="0"
+          text="width:3; value: Start Game!;"
+          position="0 1 -2"
+      ></a-entity>
+      
+      <a-box id="avatar"
+        static-body
+        scale="0.5 4 0.5" position="0 -1 -2" 
+        material="color:red; transparent:true; opacity:0.3">
+      </a-box>
+      
+        
+    </a-entity>
+
+            
+      </a-box>
+
+    <!-- enemies -->
+    <!-- <a-entity gltf-model="#monster" position="10 1 10" animation-mixer ></a-entity>
+    <a-entity gltf-model="#monster" position="10 2 10" animation-mixer ></a-entity>
+    <a-entity gltf-model="#monster" position="10 3 10" animation-mixer ></a-entity><a-entity gltf-model="#monster" position="10 1 10" animation-mixer ></a-entity> -->
+
+    <!-- coins -->
+    <a-entity template="src: #coinsTemplate" data-s="0.4 0.1 0.4" ></a-entity>
+      
+    <a-entity mixin="coin"  gltf-model="#coin" score="7" position="-1.6 2 -8.3" animation-mixer ></a-entity>
+    <a-entity mixin="coin" gltf-model="#coin" score="7" position="-1.6 2 -7.3" animation-mixer ></a-entity>
+    <a-entity mixin="coin" gltf-model="#coin" score="7" position="-1.6 2 -6.3" animation-mixer ></a-entity>
+
+    <!-- <a-box  
+        id="box0"
+        follow="target:#avatar;url:gameover.html; speed:2; dist:100"
+        material="color:red;  repeat:1 1"  
+        position="-10 0 -10">
+    </a-box> -->
+    <a-plane position="0 0 -4" rotation="-90 0 0" width="80" height="80" 
+               material="src:seamless_brick-512x512.png; repeat: 80 80"
+               static-body></a-plane>
+    <a-sky material="src:background.jpg"></a-sky>
+    <!-- <a-box follow="target:#avatar;url:gameover.html; speed:0; dist:0" id="finish" position="0 0 -10.9"scale="4 1 1" color="#ccc" static-body="mass:1"></a-box> -->
+    <a-text position="-1.6 2 -10.3" value="FINISH" color="black" wrap-count="15"></a-text>
+    
+              
+    
+
+
+    <!-- <a-box scorekeeper id="finish" position="0 0 -10.9"scale="4 1 1" color="#ccc" static-body="mass:1"></a-box>
+    <a-text position="-1.6 2 -10.3" value="FINISH" color="black" wrap-count="15"></a-text>
+
+     -->
+    
+  
+  </a-scene>
+  </body>
+  </html>
