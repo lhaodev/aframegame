@@ -14,14 +14,25 @@
     <script id="coinsTemplate" type="text/x-nunjucks-template">
       {% for x in range(0, 11) %}
         {% for z in range(0, 11) %}
-          <a-entity gltf-model="#coin" score="1" scale={{s}} 
+          <a-entity gltf-model="#coin" score="1" scale={{s}}  ammo-body="type:static" 
             position="{{ x * 10 - 50 }} 1 {{ z * 10 - 50}}" animation-mixer ></a-entity>
-          <!-- <a-cylinder dynamic-body mixin="coin2" health="5" score="10" scale={{s}}
+          <a-cylinder dynamic-body mixin="coin2" health="5" score="5" scale={{s}}
                     position="{{ x * 10 - 50 }} 1 {{ z * 10 - 50}}">
-          </a-cylinder> -->
+          </a-cylinder>
         {% endfor %}
       {% endfor %}
     </script>
+
+    <script id="monsterTemplate" type="text/x-nunjucks-template">
+      {% for x in range(1, 5) %}
+           <a-entity gltf-model="#avatar_image" 
+              follow="target:#avatar;speed:0.5; distance:10; url:level_yiwen.html"
+                  ammo-body="type:static" 
+                      
+                      position="-{{6*x}} 3 -{{6*x}}" animation-mixer>
+                  </a-entity>
+                  {% endfor %}
+     </script>
 
   <a-scene physics="friction:0.2; restitution:0.2; debug:false"
   renderer="antialias:true"
@@ -29,14 +40,18 @@
   cursor="rayOrigin: mouse" 
   camera-position>
     <a-assets>
-      <a-mixin id="coin" src="coin.gltf"></a-mixin>
-      
+      <a-entity id="coin" src="coin.gltf"></a-entity>
+      <a-entity id="avatar_image" src="yiwen_avatar.gltf"></a-entity>
+
       <a-mixin id="coin2"
                     rotation="90 0 0"
-                    material="color:goldenrod">
+                    material="color:transparent">
                 </a-mixin>
     </a-assets>
 
+    <a-box follow="target:#avatar;url:luhao.html;" material="color:red" ammo-body="type:static"
+            position="0 0 -40"></a-box>
+    
     <!-- avatar -->
     <a-box  id="avbox"
       movement-controls="fly:false"
@@ -44,8 +59,7 @@
       link-controls
       position="0 1 30">
 
-      <a-entity camera look-controls="pointerLockEnabled:false">
-              
+      <a-entity camera look-controls="pointerLockEnabled:false"></a-entity>
       
       <a-entity id="hud"
           health="10"
@@ -56,12 +70,12 @@
       
       <a-box id="avatar"
         static-body
-        scale="0.5 4 0.5" position="0 -1 -2" 
+        scale="0.5 4 0.5" position="1 -1 -2" 
         material="color:red; transparent:true; opacity:0.3">
       </a-box>
       
+      <!-- <a-entity id="avatar" static-body gltf-model="#avatar_image" position="0 0 -2" animation-mixer ></a-entity> -->
         
-    </a-entity>
 
             
       </a-box>
@@ -74,9 +88,10 @@
     <!-- coins -->
     <a-entity template="src: #coinsTemplate" data-s="0.4 0.1 0.4" ></a-entity>
       
-    <a-entity mixin="coin"  gltf-model="#coin" score="7" position="-1.6 2 -8.3" animation-mixer ></a-entity>
+    <a-entity template="src: #monsterTemplate"></a-entity>
+    <!-- <a-entity mixin="coin"  gltf-model="#coin" score="7" position="-1.6 2 -8.3" animation-mixer ></a-entity>
     <a-entity mixin="coin" gltf-model="#coin" score="7" position="-1.6 2 -7.3" animation-mixer ></a-entity>
-    <a-entity mixin="coin" gltf-model="#coin" score="7" position="-1.6 2 -6.3" animation-mixer ></a-entity>
+    <a-entity mixin="coin" gltf-model="#coin" score="7" position="-1.6 2 -6.3" animation-mixer ></a-entity> -->
 
     <!-- <a-box  
         id="box0"
@@ -88,17 +103,20 @@
                material="src:seamless_brick-512x512.png; repeat: 80 80"
                static-body></a-plane>
     <a-sky material="src:background.jpg"></a-sky>
-    <!-- <a-box follow="target:#avatar;url:gameover.html; speed:0; dist:0" id="finish" position="0 0 -10.9"scale="4 1 1" color="#ccc" static-body="mass:1"></a-box> -->
+
+    <a-box id = "goal0" material="src:wood.jpg;color:#65FF00" position="0 0 -70" follow="target:#avatar;url:lingyuliu.html" ammo-body="type: kinematic;"  ammo-shape="type: box"
+            width="3" height="1" depth="10"></a-box>
+
+    <!-- <a-box follow="target:#avatar;url:gameover.html; speed:0; dist:0" id="finish" position="0 0 -10.9"scale="4 1 1" color="#ccc" static-body="mass:1"></a-box>
     <a-text position="-1.6 2 -10.3" value="FINISH" color="black" wrap-count="15"></a-text>
     
-              
+               -->
+    
     
 
+    
 
-    <!-- <a-box scorekeeper id="finish" position="0 0 -10.9"scale="4 1 1" color="#ccc" static-body="mass:1"></a-box>
-    <a-text position="-1.6 2 -10.3" value="FINISH" color="black" wrap-count="15"></a-text>
-
-     -->
+    
     
   
   </a-scene>
