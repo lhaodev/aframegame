@@ -8,15 +8,35 @@
     <script src="follow.js"></script>
     <script src="keycontroller.js"></script>
 
-    <script id="boxTemplate" type="text/x-nunjucks-template">
+    <script id="boxTemplate1" type="text/x-nunjucks-template">
       {% for x in range(0, 11) %}
           <a-sphere width="1"
                   ammo-body="type:dynamic" ammo-shape="type:box"
                   material="src:wood.jpg;  repeat:1 1"
-                  position="0 {{3*x}} -10">
+                  position="-20 {{3*x}} -10">
           </a-sphere>
       {% endfor %}
     </script>
+
+    <script id="boxTemplate2" type="text/x-nunjucks-template">
+        {% for x in range(0, 11) %}
+            <a-sphere width="1"
+                    ammo-body="type:dynamic" ammo-shape="type:box"
+                    material="src:wood.jpg;  repeat:1 1"
+                    position="20 {{3*x}} -10">
+            </a-sphere>
+        {% endfor %}
+      </script>
+
+      <script id="boxTemplate" type="text/x-nunjucks-template">
+        {% for x in range(0, 11) %}
+            <a-sphere width="1"
+                    ammo-body="type:dynamic" ammo-shape="type:box"
+                    material="src:wood.jpg;  repeat:1 1"
+                    position="0 {{3*x}} -10">
+            </a-sphere>
+        {% endfor %}
+      </script>
 
     <script>
       THREE.inverse = THREE.invert;
@@ -24,6 +44,14 @@
   </head>
   <body>
     <a-scene physics="driver: ammo; debug: false; debugDrawMode: 1;">
+      <a-assets>
+        <a-mixin
+          id="wall"
+          geometry="primitive:box;width:190; height:10; depth:1"
+          material="src:wood.jpg;  repeat:20 1"
+        ></a-mixin>
+      </a-assets>
+
       <a-entity
         id="jabba1"
         gltf-model="jabba.gltf"
@@ -43,7 +71,7 @@
         gltf-model="lliufly.gltf"
         animation-mixer="clip:ghostfly"
         position="-20 1 -10"
-        follow="target:#avatar;speed:1;dist:100;url:jingcheng.html"
+        follow="target:#avatar;speed:2;dist:100;url:lingyuliu.html"
       ></a-entity>
 
       <a-entity
@@ -74,33 +102,39 @@
         material="src:seamless_brick-512x512.png; repeat:40 40"
       ></a-box>
 
-      <a-cone
-        id="cone"
-        radius-bottom="2"
-        radius-top=".1"
-        height="5"
-        color="yellow"
-        position="-11.053 1 -8.972"
-      ></a-cone>
-
-      <a-cone
-        material="color:blue"
-        position="7.229 1.471 -8.174"
-        ammo-body="type: dynamic;"
-        ammo-shape="type: cone"
-        radius="2"
-        height="2"
-      ></a-cone>
-
-      <a-cone material="color:blue" position="0 1 -10"></a-cone>
-
-      <a-cone
-        material="color:green"
-        position="3 1 -10"
-        follow="target:#avatar;url:practice.html; speed:2; dist:10"
-        radius="2"
-        height="2"
-      ></a-cone>
+      <!-- walls are defined with mixins but ammo-body,ammo-shape
+         can not be in the mixin ...
+    -->
+      <a-entity
+        id="northwall"
+        mixin="wall"
+        ammo-body="type:static;"
+        ammo-shape="type:box"
+        position="0 5 -100"
+      ></a-entity>
+      <a-entity
+        id="southwall"
+        mixin="wall"
+        ammo-body="type:static;"
+        ammo-shape="type:box"
+        position="0 5 100"
+      ></a-entity>
+      <a-entity
+        id="eastwall"
+        mixin="wall"
+        ammo-body="type:static;"
+        ammo-shape="type:box"
+        rotation="0 90 0"
+        position="100 5 0"
+      ></a-entity>
+      <a-entity
+        id="westwall"
+        mixin="wall"
+        ammo-body="type:static;"
+        ammo-shape="type:box"
+        rotation="0 90 0"
+        position="-100 5 0"
+      ></a-entity>
 
       <!-- avatar -->
       <a-entity
@@ -130,6 +164,10 @@
       </a-entity>
 
       <a-entity template="src: #boxTemplate"></a-entity>
+
+      <a-entity template="src: #boxTemplate1"></a-entity>
+      
+      <a-entity template="src: #boxTemplate2"></a-entity>
 
       <a-sky material="src:evening.jpeg"></a-sky>
     </a-scene>
