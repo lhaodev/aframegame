@@ -117,7 +117,7 @@ AFRAME.registerComponent('scorekeeper', {
     if (this.gameOver){
       hud.setAttribute('text','value',"Moving to new Game\n Please Wait")
       this.el.object3D.position.y = 10 // move the avatar above the board!
-      window.location.href = '/luhao.html'; 
+      window.location.href = '/gameover.html'; 
     }
   }
 
