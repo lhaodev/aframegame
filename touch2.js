@@ -36,9 +36,9 @@ AFRAME.registerComponent("touch", {
     var distance = directionVec3.length();
 
     // If the target is close, then end the game!
-    if (distance < 10 && this.data.url) {
+    if (distance < 5 && this.data.url) {
       window.location.href = this.data.url;
-    } 
+    }
     // else if (distance > this.data.dist) {
     //   return;
     // }
