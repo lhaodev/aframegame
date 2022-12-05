@@ -18,3 +18,8 @@ Start from the first level, if you pass the game, you will be automatically brou
   Trying to pass the ball to your teammate at the center of the north wall, avoid those black cube, if the black cube catch the ball, the game will reset and start over again
 - **Fourth level**: level_yiwen.html
 - **Fifth level**: huijieliu.html
+  
+  How to play: 
+  
+  This is a maze game. Try to use the keyboard to control the pink cube to push the blue ball to the exit! Once the ball gets to the exit door, you will win the game and automatically go to the game over page.
+
