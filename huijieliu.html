@@ -1,0 +1,230 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://mixedreality.mozilla.org/ammo.js/builds/ammo.wasm.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+
+  </head>
+  <body>
+    <a-assets>
+        <a-asset-item id="butterfly" src="bf2.gltf"></a-asset-item>
+        <a-asset-item id="entrance-obj" src="hj-entrance.obj"></a-asset-item>
+        <a-asset-item id="entrance-mtl" src="hj-entrance.mtl"></a-asset-item>
+        <a-asset-item id="exit-obj" src="hj-exit.obj"></a-asset-item>
+        <a-asset-item id="exit-mtl" src="hj-exit.mtl"></a-asset-item>
+
+    </a-assets>
+    <a-scene physics="driver: ammo; debug: false; debugDrawMode: 1;">
+    <a-sky src="evening.jpeg"></a-sky> 
+
+    <a-entity
+        position="-34 2 -15"
+        rotation="0 90 -60"
+        scale="0.5 0.5 0.5"
+        animation-mixer="clip:fly"
+        gltf-model="#butterfly"
+    ></a-entity>
+
+    <a-entity 
+        obj-model="obj: #entrance-obj; mtl: #entrance-mtl"
+        position="-36.5 4 -12"
+        scale="2 2 2"
+    ></a-entity>
+
+    <a-entity
+        position="35 2 15"
+        rotation="0 90 -60"
+        scale="0.5 0.5 0.5"
+        animation-mixer="clip:fly"
+        gltf-model="#butterfly"
+    ></a-entity>
+
+    <a-entity 
+        obj-model="obj: #exit-obj; mtl: #exit-mtl"
+        position="34 4 18"
+        scale="2 2 2"
+    ></a-entity>
+
+    <!-- Floor -->
+    <a-box id="floor"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="60" height="60" depth="1"
+        rotation="-90 0 0" position="0 -0.5 0" 
+        material="src:ground.png; repeat:8 8"
+    ></a-box>
+
+    <a-box id="ceiling"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="60" height="60" depth="0.5"
+        rotation="-90 0 0" position="0 5 0" 
+        material="src:seamless_brick-512x512.png; repeat:40 40; opacity:0"
+    ></a-box>
+
+    <a-box id="front"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="60" height="5" depth="2"
+        rotation="0 0 0" position="0 2.5 -30" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="left-1"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="10" height="5" depth="2"
+        rotation="0 90 0" position="-30 2.5 -25" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="left-2"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="40" height="5" depth="2"
+        rotation="0 90 0" position="-30 2.5 10" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="right-1"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="40" height="5" depth="2"
+        rotation="0 90 0" position="30 2.5 -10" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="right-2"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="10" height="5" depth="2"
+        rotation="0 90 0" position="30 2.5 25" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="back"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="60" height="5" depth="2"
+        rotation="0 0 0" position="0 2.5 30" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="inside-1"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="10" height="5" depth="2"
+        rotation="0 0 0" position="-25 2.5 -20" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="inside-2"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="10" height="5" depth="2"
+        rotation="0 90 0" position="0 2.5 -25" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="inside-3"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="30" height="5" depth="2"
+        rotation="0 0 0" position="-15 2.5 -10" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="inside-4"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="10" height="5" depth="2"
+        rotation="0 90 0" position="-10 2.5 -15" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="inside-5"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="20" height="5" depth="2"
+        rotation="0 90 0" position="10 2.5 -10" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="inside-6"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="40" height="5" depth="2"
+        rotation="0 0 0" position="-10 2.5 0" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="inside-7"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="30" height="5" depth="2"
+        rotation="0 90 0" position="20 2.5 -15" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="inside-8"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="10" height="5" depth="2"
+        rotation="0 90 0" position="10 2.5 15" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="inside-9"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="50" height="5" depth="2"
+        rotation="0 0 0" position="5 2.5 10" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <a-box id="inside-10"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="30" height="5" depth="2"
+        rotation="0 0 0" position="-15 2.5 20" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+    <!-- <a-box id="inside-11"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="10" height="5" depth="2"
+        rotation="0 90 0" position="0 2.5 25" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box> -->
+
+    <a-box id="inside-12"
+        ammo-body="type:static;" ammo-shape="type:box"
+        width="10" height="5" depth="2"
+        rotation="0 0 0" position="25 2.5 20" 
+        material="src:wall.png;  repeat:5 0.4"
+    ></a-box>
+
+  
+    <!-- avatar -->
+    <a-entity  id="avatar" 
+            movement-controls="fly:false" 
+            look-controls="pointerLockEnabled:false"
+            wasd-controls>
+        <!-- <a-sphere
+            material="src:wood.jpg; color:orange"
+            position="0 0 0"
+            
+            ammo-body="type: kinematic;" ammo-shape="type: sphere"
+            radius="2"
+        ></a-sphere> -->
+        <!-- original a-box -->
+        <!-- <a-box 
+            ammo-body="type:kinematic;"  ammo-shape="type:box"
+            material="color:blue; opacity:0.5"
+            position="0 0 0" width="3" height="5" depth="10"></a-box> -->
+        <a-box
+            ammo-body="type:kinematic;"  ammo-shape="type:box"
+            material="color:#d2609d; opacity:1"
+            position="-25 0 -15" width="2" height="4" depth="2"
+        ></a-box>
+        <a-entity 
+            camera position="-25 20 -15"
+            camera rotation="-90 0 0"
+            >
+            </a-entity>
+
+    <a-sphere
+            material="color:#1941e1; roughness:0.8"
+            position="-21 3 -15"
+            
+            ammo-body="type: dynamic;" ammo-shape="type: sphere"
+            radius="2"
+    ></a-sphere>
+    
+  
+  </a-scene>
+  </body>
+  </html>
