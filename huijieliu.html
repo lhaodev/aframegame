@@ -59,7 +59,7 @@
         ammo-body="type:static;" ammo-shape="type:box"
         width="60" height="60" depth="1"
         rotation="-90 0 0" position="0 -0.5 0" 
-        material="src:ground.png; repeat:8 8"
+        material="src:grass.png; repeat:8 8"
     ></a-box>
 
     <a-box id="ceiling"
@@ -225,6 +225,9 @@
             >
             </a-entity>
 
+    
+    </a-entity>
+    
     <a-sphere
             id="ball"
             ammo-body="type: dynamic" ammo-shape="type: sphere"
@@ -232,10 +235,7 @@
             position="-21 3 -15"    
             radius="2"
             touch="target:#door;url:gameover.html"
-
     ></a-sphere>
-    </a-entity>
-    
   
   </a-scene>
   </body>
